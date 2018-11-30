@@ -1,0 +1,106 @@
+# depslib dependency file v1.0
+1542835403 source:c:\users\zue26\documents\github\akina\stack.cpp
+	"stack.h"
+
+1541503860 c:\users\zue26\documents\github\akina\stack.h
+	<stdio.h>
+	<stdlib.h>
+	<iostream>
+	<assert.h>
+	<string.h>
+	<math.h>
+	<ctype.h>
+
+1543268671 source:c:\users\zue26\documents\github\akina\list.cpp
+	"List.h"
+
+1543268047 c:\users\zue26\documents\github\akina\list.h
+	<stdio.h>
+	<stdlib.h>
+	<cstdlib>
+	<iostream>
+	<assert.h>
+	<string.h>
+	<math.h>
+	<ctype.h>
+
+1543520694 source:c:\users\zue26\documents\github\akina\main.cpp
+	"D:\TX\TXlib.h"
+	<iostream>
+	<stdio.h>
+	<stdlib.h>
+	"PtrList.h"
+	"Tree.h"
+
+1543496494 d:\tx\txlib.h
+	<assert.h>
+	<stdlib.h>
+	<stdarg.h>
+	<stdio.h>
+	<string.h>
+	<io.h>
+	<fcntl.h>
+	<math.h>
+	<process.h>
+	<signal.h>
+	<setjmp.h>
+	<locale.h>
+	<time.h>
+	<float.h>
+	<limits.h>
+	<vector>
+	<string>
+	<map>
+	<iostream>
+	<numeric>
+	<algorithm>
+	<exception>
+	<stdexcept>
+	<windows.h>
+	<windowsx.h>
+	<tlhelp32.h>
+	<shellapi.h>
+	<shlobj.h>
+	<cxxabi.h>
+	<unwind.h>
+	<stdarg.h>
+	<unistd.h>
+	<termios.h>
+	<conio.h>
+	<direct.h>
+	<shlobj.h>
+	<new.h>
+	<ntstatus.h>
+	<crtdbg.h>
+	<rtcapi.h>
+	<dbghelp.h>
+
+1543427433 c:\users\zue26\documents\github\akina\ptrlist.h
+	<stdio.h>
+	<stdlib.h>
+	<cstdlib>
+	<iostream>
+	<assert.h>
+	<string.h>
+	<math.h>
+	<ctype.h>
+	"stack.h"
+
+1543527027 source:c:\users\zue26\documents\github\akina\tree.cpp
+	"Tree.h"
+
+1543424951 c:\users\zue26\documents\github\akina\tree.h
+	<stdio.h>
+	<stdlib.h>
+	<cstdlib>
+	<iostream>
+	<assert.h>
+	<string.h>
+	<math.h>
+	<ctype.h>
+	<direct.h>
+	"stack.h"
+
+1543427432 source:c:\users\zue26\documents\github\akina\ptrlist.cpp
+	"PtrList.h"
+
