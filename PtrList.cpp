@@ -2,7 +2,7 @@
 
 #include "PtrList.h"
 
-void ptr_list_present(const char dot[])
+void ptr_list_test(const char dot[])
 {
     const char LISTDUMP[10] = "list";
 
@@ -30,255 +30,274 @@ void ptr_list_present(const char dot[])
 //************************************
 /// Constructs MyPtrList object and initialize it.
 ///
-/// \param [in] MyPtrList* l - pointer to MyPtrList object
+/// \param [in] MyPtrList* list - pointer to MyPtrList object
 ///
 ///
 /// \return void
 ///
 //************************************
 
-void plist_Ctor(MyPtrList* l)
+void plist_Ctor(MyPtrList* list)
 {
-    assert(l);
+    assert(list);
 
-    l->plist_guard_begin = GUARD;
-    l->plist_guard_end = GUARD;
+    list->plist_guard_begin = GUARD;
+    list->plist_guard_end = GUARD;
 
-    l->head = NULL;
-    l->tail = NULL;
+    list->head = NULL;
+    list->tail = NULL;
 
-    l->pList_len = 0;
+    list->pList_len = 0;
 
-    plmake_hash(l);
+    plist_make_hash(list);
 }
 
 //************************************
 /// Deletes MyPtrList structure and its data.
 ///
-/// \param [in] MyPtrList* l - pointer to MyPtrList object
+/// \param [in] MyPtrList* list - pointer to MyPtrList object
 ///
 ///
 /// \return void
 ///
 //************************************
 
-void plist_Dtor(MyPtrList* l)
+void plist_Dtor(MyPtrList* list)
 {
-    assert(l);
+    assert(list);
 
-    plist_clear(l);
+    plist_clear(list);
 
-    l->pListHash_struct = HASHPOIS;
+    list->pListHash_struct = HASHPOIS;
 
-    l->plist_guard_begin = GUARDPOIS;
-    l->plist_guard_end = GUARDPOIS;
+    list->plist_guard_begin = GUARDPOIS;
+    list->plist_guard_end = GUARDPOIS;
 }
 
 //************************************
 /// Constructs PtrListElem object and initialize it.
 ///
-/// \param [in] PtrListElem* l - pointer to PtrListElem object
+/// \param [in] PtrListElem* list - pointer to PtrListElem object
 ///
 ///
 /// \return void
 ///
 //************************************
 
-void plist_elem_Ctor(PtrListElem* le)
+void plist_elem_Ctor(PtrListElem* elem)
 {
-    assert(le);
+    assert(elem);
 
-    le->lelem_guard_begin = GUARD;
-    le->lelem_guard_end = GUARD;
+    elem->list_elem_guard_begin = GUARD;
+    elem->list_elem_guard_end = GUARD;
 
-    le->prev = NULL;
-    le->next = NULL;
+    elem->prev = NULL;
+    elem->next = NULL;
 
-    le->info = 0;
+    elem->info = 0;
 }
 
 //************************************
 /// Deletes PtrListElem structure.
 ///
-/// \param [in] PtrListElem* l - pointer to PtrListElem object
+/// \param [in] PtrListElem* list - pointer to PtrListElem object
 ///
 ///
 /// \return void
 ///
 //************************************
 
-void plist_elem_Dtor(PtrListElem* le)
+void plist_elem_Dtor(PtrListElem* elem)
 {
-    assert(le);
+    assert(elem);
 
-    le->lelem_guard_begin = GUARDPOIS;
-    le->lelem_guard_end = GUARDPOIS;
+    elem->list_elem_guard_begin = GUARDPOIS;
+    elem->list_elem_guard_end = GUARDPOIS;
 
-    le->prev = NULL;
-    le->next = NULL;
+    elem->prev = NULL;
+    elem->next = NULL;
 
-    le->info = NAN;
+    elem->info = NAN;
 }
 
 //************************************
 /// Hashes the list.
 ///
-/// \param [in] MyPtrList* l - pointer to MyPtrList object
+/// \param [in] MyPtrList* list - pointer to MyPtrList object
 ///
 /// \return changes ListHash_struct in list.
 ///
 //************************************
 
-void plmake_hash(MyPtrList* l)
+void plist_make_hash(MyPtrList* list)
 {
-    assert(l);
+    assert(list);
 
-    l->pListHash_struct = HASHDEFAULT;
-    l->pListHash_struct = hash (l, sizeof (*l));
+    list->pListHash_struct = HASHDEFAULT;
+    list->pListHash_struct = hash (list, sizeof (*list));
 }
 
-#define INSERT(head_or_tail,next_or_prev_for_1_arg,not_2_arg) \
-            PtrListElem* new_item = (PtrListElem*) calloc(1, sizeof(*new_item));\
-            plist_elem_Ctor(new_item);\
-            new_item->info = val;\
-            \
-            if(!(l->head_or_tail))\
-            {\
-                l->head = new_item;\
-                l->tail = new_item;\
-            }\
-            else\
-            {\
-                l->head_or_tail->next_or_prev_for_1_arg = new_item;\
-                new_item->not_2_arg = l->head_or_tail;\
-                l->head_or_tail = new_item;\
-            }\
-            \
-            (l->pList_len)++;\
-            plmake_hash(l)
-
-PtrListElem* plist_push_back(MyPtrList* l, list_type val)
+PtrListElem* plist_elem_create(list_type val)
 {
-    assert(l);
-    INSERT(tail, next, prev);
+    PtrListElem* new_item = (PtrListElem*) calloc(1, sizeof(*new_item));
+    plist_elem_Ctor(new_item);
+    new_item->info = val;
+
     return new_item;
 }
 
-PtrListElem* plist_push_front(MyPtrList* l, list_type val)
+#define INSERT(head_or_tail,pos,not_pos) \
+            \
+            PtrListElem* new_item = plist_elem_create(val);\
+            \
+            if(!(list->head_or_tail))\
+            {\
+                list->head = new_item;\
+                list->tail = new_item;\
+            }\
+            else\
+            {\
+                list->head_or_tail->pos = new_item;\
+                new_item->not_pos = list->head_or_tail;\
+                list->head_or_tail = new_item;\
+            }\
+            \
+            (list->pList_len)++;\
+            plist_make_hash(list);
+
+PtrListElem* plist_push_back(MyPtrList* list, list_type val)
 {
-    assert(l);
+    assert(list);
+
+    INSERT(tail, next, prev);
+
+    return new_item;
+}
+
+PtrListElem* plist_push_front(MyPtrList* list, list_type val)
+{
+    assert(list);
+
     INSERT(head, prev, next);
+
     return new_item;
 }
 
 //************************************
 /// Inserts element in list after the certain element
 ///
-/// \param [in] MyPtrList* l - pointer to MyPtrList object
-/// \param [in] PtrListElem* le - pointer to the element to insert after
+/// \param [in] MyPtrList* list - pointer to MyPtrList object
+/// \param [in] PtrListElem* elem - pointer to the element to insert after
 /// \param [in] list_type val - value to insert
 ///
 /// \return pointer to PtrListElem object which include val
 ///
 //************************************
 
-PtrListElem* plist_insert(MyPtrList* l, PtrListElem* le, list_type val)
+PtrListElem* plist_insert(MyPtrList* list, PtrListElem* elem, list_type val)
 {
-    assert(l && le && (le->next || le == l->tail));
+    assert(list && elem && (elem->next || elem == list->tail));
 
-    PtrListElem* new_item = (PtrListElem*) calloc(1, sizeof(*new_item));
-    plist_elem_Ctor(new_item);
-    new_item->info = val;
+    PtrListElem* new_item = NULL;
 
-    if(le == l->tail)
+    if(elem == list->tail)
     {
-        return plist_push_back(l, val);
+        return plist_push_back(list, val);
     }
     else
     {
-        le->next->prev = new_item;
-        new_item->prev = le;
-        new_item->next = le->next;
-        le->next = new_item;
+        new_item = plist_elem_create(val);
+
+        elem->next->prev = new_item;
+        new_item->prev = elem;
+        new_item->next = elem->next;
+        elem->next = new_item;
     }
 
-    (l->pList_len)++;
-    plmake_hash(l);
+    (list->pList_len)++;
+    plist_make_hash(list);
+
     return new_item;
 }
 
 #undef INSERT
 
-#define REMOVE(head_or_tail,next_or_prev_for_1_arg,not_2_arg)\
-            if(!(l->head_or_tail))\
-            {\
-                return LERREMOVE;\
-            }\
-            \
-            PtrListElem* del = l->head_or_tail;\
-            l->head_or_tail = l->head_or_tail->next_or_prev_for_1_arg;\
-            if(l->head_or_tail) \
-            {\
-                l->head_or_tail->not_2_arg = NULL;\
-            }\
-            else\
-            {\
-                l->head = NULL;\
-                l->tail = NULL;\
-            }\
-            \
-            plist_elem_Dtor(del);\
-            free(del);\
-            \
-            (l->pList_len)--;\
-            plmake_hash(l)
+#define REMOVE(head_or_tail,pos,not_pos)\
+                    if(!(list->head_or_tail))\
+                    {\
+                        return LERREMOVE;\
+                    }\
+                    \
+                    PtrListElem* del = list->head_or_tail;\
+                    list->head_or_tail = list->head_or_tail->pos;\
+                    \
+                    if(list->head_or_tail) \
+                    {\
+                        list->head_or_tail->not_pos = NULL;\
+                    }\
+                    else\
+                    {\
+                        list->head = NULL;\
+                        list->tail = NULL;\
+                    }\
+                    \
+                    plist_elem_Dtor(del);\
+                    free(del);\
+                    \
+                    (list->pList_len)--;\
+                    plist_make_hash(list)
 
-int plist_pop_back(MyPtrList* l)
+int plist_pop_back(MyPtrList* list)
 {
-    assert(l);
+    assert(list);
+
     REMOVE(tail, prev, next);
+
     return 0;
 }
 
-int plist_pop_front(MyPtrList* l)
+int plist_pop_front(MyPtrList* list)
 {
-    assert(l);
+    assert(list);
+
     REMOVE(head, next, prev);
+
     return 0;
 }
 
-int plist_erase(MyPtrList* l, PtrListElem* le)
+int plist_erase(MyPtrList* list, PtrListElem* elem)
 {
-    assert(l && le && (le->next || le == l->tail) && (le->prev || le == l->head));
+    assert(list && elem && (elem->next || elem == list->tail) && (elem->prev || elem == list->head));
 
-    if(le == l->head)
+    if(elem == list->head)
     {
-        return plist_pop_front(l);
+        return plist_pop_front(list);
     }
-    if(le == l->tail)
+    if(elem == list->tail)
     {
-        return plist_pop_back(l);
+        return plist_pop_back(list);
     }
 
-    PtrListElem* del = le;
-    le->next->prev = le->prev;
-    le->prev->next = le->next;
+    PtrListElem* del = elem;
+    elem->next->prev = elem->prev;
+    elem->prev->next = elem->next;
 
     plist_elem_Dtor(del);
     free(del);
-    (l->pList_len)--;
 
-    plmake_hash(l);
+    (list->pList_len)--;
+    plist_make_hash(list);
+
     return 0;
 }
 
 #undef REMOVE
 
-#define CUR_HEAD PtrListElem* cur = l->head
+#define CUR_HEAD PtrListElem* cur = list->head
 
-int plist_clear(MyPtrList* l)
+int plist_clear(MyPtrList* list)
 {
-    assert(l);
+    assert(list);
 
     CUR_HEAD;
     while(cur)
@@ -289,42 +308,45 @@ int plist_clear(MyPtrList* l)
         free(del);
     }
 
-    l->pList_len = 0;
+    list->pList_len = 0;
 
-    l->head = NULL;
-    l->tail = NULL;
+    list->head = NULL;
+    list->tail = NULL;
 
-    plmake_hash(l);
+    plist_make_hash(list);
 
     return 0;
 }
 
 #define PREV(cur) cur->prev
-#define NEXT(cur) cur->next
-#define DO_REAL_HASH  \
-    int StructHash_buf = l->pListHash_struct;\
-    l->pListHash_struct = HASHDEFAULT;\
-    int RealHash_buf = hash (l, sizeof (*l));
-#define RE_STORE l->pListHash_struct = StructHash_buf;\
 
-int plist_is_OK(MyPtrList* l)
+#define NEXT(cur) cur->next
+
+#define DO_REAL_HASH  \
+    int StructHash_buf = list->pListHash_struct;\
+    list->pListHash_struct = HASHDEFAULT;\
+    int RealHash_buf = hash (list, sizeof (*list));
+
+#define RE_STORE_HASH list->pListHash_struct = StructHash_buf;\
+
+int plist_is_OK(MyPtrList* list)
 {
-    assert(l);
+    assert(list);
     int error = LERROK;
 
     DO_REAL_HASH;
-    if ((l->plist_guard_begin != GUARD) || (l->plist_guard_end != GUARD) ||  RealHash_buf != StructHash_buf)
+    if ((list->plist_guard_begin != GUARD) || (list->plist_guard_end != GUARD) ||  RealHash_buf != StructHash_buf)
     {
         return LERSTRUCT;
     }
-    RE_STORE;
+    RE_STORE_HASH;
 
     unsigned int count = 0;
 
     CUR_HEAD;
     while(cur)
     {
-        if (error = plelem_is_OK(cur))
+        if (error = plist_elem_is_OK(cur))
         {
             return error;
         }
@@ -334,7 +356,7 @@ int plist_is_OK(MyPtrList* l)
             return LERPOS;
         }
 
-        if(count > l->pList_len)
+        if(count > list->pList_len)
         {
             return LERLEN;
         }
@@ -343,7 +365,7 @@ int plist_is_OK(MyPtrList* l)
         count ++;
     }
 
-    if (l->pList_len > count)
+    if (list->pList_len > count)
     {
         return LERLEN;
     }
@@ -354,16 +376,16 @@ int plist_is_OK(MyPtrList* l)
 
 
 
-int plelem_is_OK(PtrListElem* le)
+int plist_elem_is_OK(PtrListElem* elem)
 {
-    assert(le);
+    assert(elem);
 
-    if ((le->lelem_guard_begin != GUARD) || (le->lelem_guard_end != GUARD))
+    if ((elem->list_elem_guard_begin != GUARD) || (elem->list_elem_guard_end != GUARD))
     {
         return LERDATA;
     }
 
-    if (!isfinite(le->info))
+    if (!isfinite(elem->info))
     {
         return LERINFO;
     }
@@ -375,25 +397,29 @@ int plelem_is_OK(PtrListElem* le)
             case ERROR:\
             printf("   " MESSAGE "\n");\
             break;
+
 #define TO_GRAPHVIZ(gv_name, DUMPNAME) strdup(DUMPNAME); strcat(gv_name, ".gv")
+
 #define TO_BMP(bmp_name, DUMPNAME) strdup(DUMPNAME); strcat(bmp_name, ".bmp")
+
 #define CONCAT_DOT(arg)    strcat(dotty, arg)
 
-int plist_dump(const char dot[], const char DUMPNAME[], MyPtrList* l)
+int plist_dump(const char dot[], const char DUMPNAME[], MyPtrList* list)
 {
-    assert(l);
+    assert(list);
 
     printf("~In File: %s\n~In Line: %d\n", __FILE__, __LINE__);
-    printf("~List [0x%X]\n~{\n   Length = %u\n   Head = [0x%X]\n   Tail = [0x%X]\n", (out_ptr) l, l->pList_len, (out_ptr) l->head, (out_ptr) l->tail);
-    printf("   Struct_guard_begin  = %s\n", ((l->plist_guard_begin) == GUARD) ? "GUARD": "ERROR");
-    printf("   Struct_guard_end  = %s\n",   ((l->plist_guard_end) == GUARD) ? "GUARD": "ERROR");
+    printf("~List [0x%X]\n~{\n   Length = %u\n   Head = [0x%X]\n   Tail = [0x%X]\n", (out_ptr) list, list->pList_len, (out_ptr) list->head, (out_ptr) list->tail);
+    printf("   Struct_guard_begin  = %s\n", ((list->plist_guard_begin) == GUARD)    ? "GUARD": "ERROR");
+    printf("   Struct_guard_end  = %s\n",   ((list->plist_guard_end) == GUARD)      ? "GUARD": "ERROR");
 
     DO_REAL_HASH;
     printf("   In memory Struct_Hash = %i\n", StructHash_buf);
     printf("        Real Struct_Hash = %i\n", RealHash_buf);
-    RE_STORE;
+    RE_STORE_HASH;
+
     printf("   INFO: \n");\
-    switch(plist_is_OK(l))
+    switch(plist_is_OK(list))
     {
         CASE_LIST_OK(LERROK,    "List is OK");
         CASE_LIST_OK(LERDATA,   "Data memory in the list was damaged");
@@ -407,44 +433,16 @@ int plist_dump(const char dot[], const char DUMPNAME[], MyPtrList* l)
 
     printf("~}\n\n");
 
-    char* gv_name = TO_GRAPHVIZ(gv_name, DUMPNAME);  // make grathviz file name
-    char* bmp_name = TO_BMP(bmp_name, DUMPNAME);     // make bmp file name
-
-    FILE* dumptxt = fopen(gv_name, "w");
-    if (!dumptxt) return 1;
-
-    fprintf(dumptxt, "digraph ge\n{ rankdir = LR;\n");
-
-    CUR_HEAD;
-    for(int i = 0; (i < l->pList_len) && cur; i++ , cur = cur->next)
-    {
-        char* dump_elem_str = plelem_dump(cur);
-        fprintf(dumptxt, dump_elem_str);
-        free(dump_elem_str);
-    }
-
-    fprintf(dumptxt, "}");
-    fclose(dumptxt);
-
-    char* dotty = (char*) calloc(200, sizeof(*dotty));
-    dotty = strcpy(dotty, dot);                         // make
-    CONCAT_DOT(gv_name);                                // dot
-    CONCAT_DOT(" -o ");                                 // compile
-    CONCAT_DOT(bmp_name);                               // command
-
-    system(dotty);                                  //compile graphviz
-    system(bmp_name);                               //open bmp
-
-    free(gv_name);
-    free(bmp_name);
-    free(dotty);
+    if (plist_draw(dot, DUMPNAME, list))
+        return 1;
 
     return 0;
 }
 
-char* plelem_dump(PtrListElem* le)
+char* plist_elem_dump(PtrListElem* elem)
 {
-    assert(le);
+    assert(elem);
+
     char* dump = (char*) calloc(800, sizeof(*dump));
     char dump_str[700] = "%i [shape = none, label = <<TABLE BORDER = \"0\" CELLBORDER = \"1\" CELLSPACING = \"0\" CELLPADDING = \"4\">\
                                         <TR>\
@@ -458,10 +456,47 @@ char* plelem_dump(PtrListElem* le)
                                         <TD>%p</TD>\
                                         </TR>\
                                         </TABLE>>];\n";
-    if(le->prev)
+    if(elem->prev)
     {
         strcat(dump_str, "%i -> %i;\n");
     }
-    sprintf(dump, dump_str, le, le->info, le, le->prev, le->next, le->prev, le);
+    sprintf(dump, dump_str, elem, elem->info, elem, elem->prev, elem->next, elem->prev, elem);
     return dump;
+}
+
+int plist_draw(const char dot[], const char DUMPNAME[], MyPtrList* list)
+{
+    char* gv_name = TO_GRAPHVIZ(gv_name, DUMPNAME);  // make grathviz file name
+    char* bmp_name = TO_BMP(bmp_name, DUMPNAME);     // make bmp file name
+
+    FILE* dumptxt = fopen(gv_name, "w");
+    if (!dumptxt) return 1;
+
+    fprintf(dumptxt, "digraph ge\n{ rankdir = LR;\n");
+
+    CUR_HEAD;
+    for(int i = 0; (i < list->pList_len) && cur; i++ , cur = cur->next)
+    {
+        char* dump_elem_str = plist_elem_dump(cur);
+        fprintf(dumptxt, dump_elem_str);
+        free(dump_elem_str);
+    }
+
+    fprintf(dumptxt, "}");
+    fclose(dumptxt);
+
+    char* dotty = (char*) calloc(200, sizeof(*dotty));
+    dotty = strcpy(dotty, dot);                         // make
+    CONCAT_DOT(gv_name);                                // dot
+    //CONCAT_DOT(" -o ");                                 // compile
+    //CONCAT_DOT(bmp_name);                               // command
+
+    system(dotty);                                  //compile graphviz
+    //system(bmp_name);                               //open bmp
+
+    free(gv_name);
+    free(bmp_name);
+    free(dotty);
+
+    return 0;
 }

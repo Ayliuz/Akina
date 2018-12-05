@@ -152,9 +152,9 @@ int Akinator(const char dot[], const char* SAVENAME)
                         gets(name);\
                         EOL;
 
-Node* expert_new_item(Tree* tr, Node* nd, int POS)
+Node* expert_new_item(Tree* tree, Node* node, int POS)
 {
-    assert(tr && nd);
+    assert(tree && node);
 
     printf("А кто это?");
     GETSTR(buff);
@@ -163,19 +163,19 @@ Node* expert_new_item(Tree* tr, Node* nd, int POS)
 
     if (POS)
     {
-        new_nd = tree_insert_left (tr, nd, buff);
+        new_nd = tree_insert_left (tree, node, buff);
     }
     else
     {
-        new_nd = tree_insert_right(tr, nd, buff);
+        new_nd = tree_insert_right(tree, node, buff);
     }
 
     return new_nd;
 }
 
-Node* expert_new_branch(Tree* tr, Node* nd)
+Node* expert_new_branch(Tree* tree, Node* node)
 {
-    assert(tr && nd);
+    assert(tree && node);
 
     printf("А кто это?\n");
     GETSTR(buffans);
@@ -188,10 +188,10 @@ Node* expert_new_branch(Tree* tr, Node* nd)
 
     EOL;
 
-    Node* new_nd = tree_insert_left(tr, nd, buffans);
-    tree_insert_right(tr, nd, nd->info);
+    Node* new_nd = tree_insert_left(tree, node, buffans);
+    tree_insert_right(tree, node, node->info);
 
-    nd->info = buffquest;
+    node->info = buffquest;
 
     return new_nd;
 }
@@ -240,18 +240,18 @@ int expert_cheer()
 #define INVITEDEF   printf("Введите определяемый объект:\n");\
                     while (!gets(answer));\
                     EOL;\
-                    nd = node_find(ROOT(tr), answer, expert_info_cmp);
+                    node = node_find(ROOT(tree), answer, expert_info_cmp);
 
 #define PRINTOBJ(format,object)    printf(format, toupper(*(object)), (object) + 1)
 
-int expert_get_definition(Tree* tr)
+int expert_get_definition(Tree* tree)
 {
-    Node* nd = NULL;
+    Node* node = NULL;
     char answer[STRLEN] = "";
     INVITEDEF;
     RECOGNIZE("Выход", 5, "Exit", 4, EXIT);
 
-    while(!nd)
+    while(!node)
     {
         INCORRECT;
         INVITEDEF;
@@ -260,7 +260,7 @@ int expert_get_definition(Tree* tr)
 
     PRINTOBJ("%c%s ", answer);
 
-    expert_print_way(PARENT(nd), ",", node_define(nd));
+    expert_print_way(PARENT(node), ",", node_define(node));
 
     DOT;
     EOL;
@@ -272,7 +272,7 @@ int expert_get_definition(Tree* tr)
 #define INVITECOMP(state,node)  printf("Введите персонажа" state " сравнить:\n");\
                                 while (!gets(answer));\
                                 EOL;\
-                                node = node_find(ROOT(tr), answer, expert_info_cmp);
+                                node = node_find(ROOT(tree), answer, expert_info_cmp);
 
 #define COMPAREIN(state,node)   INVITECOMP(state, node);\
                                 RECOGNIZE("Выход", 5, "Exit", 4, EXIT);\
@@ -288,34 +288,34 @@ int expert_get_definition(Tree* tr)
                             \
                             printf("%c%s", tolower(*((node)->info + 1)), (node)->info + 2);
 
-int expert_get_comparison(Tree* tr)
+int expert_get_comparison(Tree* tree)
 {
-    Node* nd1 = NULL;
-    Node* nd2 = NULL;
+    Node* node1 = NULL;
+    Node* node2 = NULL;
     char answer[STRLEN] = "";
 
-    COMPAREIN(", которого нужно", nd1);
-    COMPAREIN(", с которым нужно", nd2);
+    COMPAREIN(", которого нужно", node1);
+    COMPAREIN(", с которым нужно", node2);
 
-    int nd1_side = 0;                               // side of nd1 related to common
-    Node* com = tree_find_common(nd1, nd2, &nd1_side);
+    int node1_side = 0;                               // side of node1 related to common
+    Node* com = tree_find_common(node1, node2, &node1_side);
 
-    if (com != ROOT(tr))
+    if (com != ROOT(tree))
     {
-        PRINTOBJ("%c%s так же, как и ", nd1->info);                 // common
-        PRINTOBJ("%c%s, ", nd2->info);
+        PRINTOBJ("%c%s так же, как и ", node1->info);                 // common
+        PRINTOBJ("%c%s, ", node2->info);
 
         expert_print_way(PARENT(com), ",", node_define(com));
         DOT;
         EOL;
     }
 
-    if (nd1 != nd2)
+    if (node1 != node2)
     {
-        PRINTOBJ("Но %c%s, в отличие от ", nd1->info);
-        PRINTOBJ("%c%s, ", nd2->info);
+        PRINTOBJ("Но %c%s, в отличие от ", node1->info);
+        PRINTOBJ("%c%s, ", node2->info);
 
-        PRINTINFO(com,nd1_side);
+        PRINTINFO(com,node1_side);
 
         DOT;
         EOL;
@@ -338,21 +338,21 @@ int expert_info_cmp(tree_type answer, tree_type info)
 
 
 
-int expert_print_way(Node* nd,const char* separate, int mode)                  // includes input nd info, way is found until end_of_way
+int expert_print_way(Node* node, const char* separate, int mode)                  // includes input node info
 {
-    if (!nd)
+    if (!node)
     {
         return 0;
     }
 
-    expert_print_way(PARENT(nd), separate, node_define(nd));
+    expert_print_way(PARENT(node), separate, node_define(node));
 
-    if (node_define(nd) != NOPARENT)
+    if (node_define(node) != NOPARENT)
     {
         printf("%s ", separate);
     }
 
-    PRINTINFO(nd,mode);
+    PRINTINFO(node,mode);
 
     return 0;
 }

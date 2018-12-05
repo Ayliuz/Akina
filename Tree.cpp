@@ -2,65 +2,65 @@
 
 #include "Tree.h"
 
-void tree_present(const char dot[])
+void tree_test(const char dot[])
 {
     const char TREEDUMP[10] = "tree";
     const char TREE1DUMP[10] = "tree1";
     const char* WRITENAME = "printTree.txt";
 
-    Tree tr;
-    tree_Ctor(&tr);
+    Tree tree;
+    tree_Ctor(&tree);
 
     Node* root = node_create("456");
 
-    tree_set_root(&tr, root);
+    tree_set_root(&tree, root);
 
-    tree_insert_left(&tr, root, "65");
-    tree_insert_right(&tr, root, "873");
+    tree_insert_left(&tree, root, "65");
+    tree_insert_right(&tree, root, "873");
 
-    tree_erase(&tr, LEFT(root));
+    tree_erase(&tree, LEFT(root));
 
-    tree_insert_left(&tr, root, "767");
+    tree_insert_left(&tree, root, "767");
 
-    tree_insert_left(&tr, LEFT(root), "54");
+    tree_insert_left(&tree, LEFT(root), "54");
 
-    tree_insert_right(&tr, root, "666");
+    tree_insert_right(&tree, root, "666");
 
-    tree_print(&tr, WRITENAME);
-    tree_dump(dot, TREEDUMP, &tr);
+    tree_print(&tree, WRITENAME);
+    tree_dump(dot, TREEDUMP, &tree);
 
     Tree* tr1 = tree_read(WRITENAME);
     tree_dump(dot, TREE1DUMP, tr1);
 
     tree_Dtor(tr1);
     free(tr1);
-    tree_Dtor(&tr);
+    tree_Dtor(&tree);
 }
 
-void tree_Ctor(Tree* tr)
+void tree_Ctor(Tree* tree)
 {
-    assert(tr);
+    assert(tree);
 
-    tr->tree_guard_begin = GUARD;
-    tr->tree_guard_end = GUARD;
+    tree->tree_guard_begin = GUARD;
+    tree->tree_guard_end = GUARD;
 
-    ROOT(tr) = NULL;
+    ROOT(tree) = NULL;
 
-    tr->ver_num = 0;
+    tree->ver_num = 0;
 
-    tree_make_hash(tr);
+    tree_make_hash(tree);
 }
 
-void tree_Dtor(Tree* tr)
+void tree_Dtor(Tree* tree)
 {
-    assert(tr);
+    assert(tree);
 
-    tree_clear(tr);
+    tree_clear(tree);
 
-    tr->TreeHash_struct = HASHPOIS;
+    tree->TreeHash_struct = HASHPOIS;
 
-    tr->tree_guard_begin = GUARDPOIS;
-    tr->tree_guard_end = GUARDPOIS;
+    tree->tree_guard_begin = GUARDPOIS;
+    tree->tree_guard_end = GUARDPOIS;
 }
 
 void node_Ctor(Node* node)
@@ -94,12 +94,12 @@ void node_Dtor(Node* node)
 
 }
 
-void tree_make_hash(Tree* tr)
+void tree_make_hash(Tree* tree)
 {
-    assert(tr);
+    assert(tree);
 
-    tr->TreeHash_struct = HASHDEFAULT;
-    tr->TreeHash_struct = hash (tr, sizeof (*tr));
+    tree->TreeHash_struct = HASHDEFAULT;
+    tree->TreeHash_struct = hash (tree, sizeof (*tree));
 }
 
 Node* node_create(tree_type val)
@@ -111,145 +111,152 @@ Node* node_create(tree_type val)
     return new_node;
 }
 
-Node* tree_set_root(Tree* tr, Node* nd)
+Node* tree_set_root(Tree* tree, Node* root)
 {
-    if (!nd)
+    if (!root)
     {
-        return ROOT(tr);
+        return ROOT(tree);
     }
 
-    if (ROOT(tr))
+    if (ROOT(tree))
     {
-        ROOT(tr)->info = nd->info;
-        node_Dtor(nd);
-        free(nd);
+        LEFT(root) = LEFT(ROOT(tree));
+        RIGHT(root) = RIGHT(ROOT(tree));
+        PARENT(root) = PARENT(ROOT(tree));
+        node_Dtor(ROOT(tree));
+        free(ROOT(tree));
+        ROOT(tree) = root;
     }
     else
     {
-        ROOT(tr) = nd;
-        if (!tr->ver_num)
-            tr->ver_num++;
-        tree_make_hash(tr);
+        ROOT(tree) = root;
+        if (!tree->ver_num)
+            tree->ver_num++;
     }
-    return ROOT(tr);
+
+    tree_make_hash(tree);
+
+    return ROOT(tree);
 }
 #define INSERT(pos) \
-                if (nd->pos)\
+                if (parent_node->pos)\
                 {\
-                    nd->pos->info = val;\
-                    return nd->pos;\
+                    parent_node->pos->info = new_val;\
+                    return parent_node->pos;\
                 }\
-                Node* new_node = (Node*) calloc(1, sizeof(*new_node));\
-                node_Ctor(new_node);\
-                new_node->info = val;\
-                PARENT(new_node) = nd;\
-                nd->pos = new_node;\
-                tr->ver_num++;\
-                tree_make_hash(tr);
+                Node* new_node = node_create(new_val);\
+                PARENT(new_node) = parent_node;\
+                parent_node->pos = new_node;\
+                tree->ver_num++;\
+                tree_make_hash(tree);
 
-Node* tree_insert_left(Tree* tr, Node* nd, tree_type val)
+Node* tree_insert_left(Tree* tree, Node* parent_node, tree_type new_val)
 {
-    assert(tr && nd);
+    assert(tree && parent_node);
+
     INSERT(left);
+
     return new_node;
 }
 
-Node* tree_insert_right(Tree* tr, Node* nd, tree_type val)
+Node* tree_insert_right(Tree* tree, Node* parent_node, tree_type new_val)
 {
-    assert(tr && nd);
+    assert(tree && parent_node);
+
     INSERT(right);
+
     return new_node;
 }
 
-int tree_erase(Tree* tr, Node* nd)
+int tree_erase(Tree* tree, Node* node)
 {
-    assert(tr && nd);
+    assert(tree && node);
 
-    tree_cut(tr, nd);
-    tree_make_hash(tr);
+    tree_cut(tree, node);
+    tree_make_hash(tree);
 
     return 0;
 }
 
-Tree* tree_clear(Tree* tr)
+Tree* tree_clear(Tree* tree)
 {
-    assert(tr);
+    assert(tree);
 
-    tree_cut(tr, ROOT(tr));
+    tree_cut(tree, ROOT(tree));
 
-    ROOT(tr) = NULL;
+    ROOT(tree) = NULL;
 
-    tr->ver_num = 0;
+    tree->ver_num = 0;
 
-    tree_make_hash(tr);
+    tree_make_hash(tree);
 
-    return tr;
+    return tree;
 }
 
-int tree_cut(Tree* tr, Node* nd)
+int tree_cut(Tree* tree, Node* node)
 {
-    if (!nd)
+    if (!node)
     {
         return 0;
     }
 
-    tree_cut(tr, LEFT(nd));
-    tree_cut(tr, RIGHT(nd));
+    tree_cut(tree, LEFT(node));
+    tree_cut(tree, RIGHT(node));
 
-    switch (node_define(nd))
+    switch (node_define(node))
     {
         case L:
-            LEFT(PARENT(nd)) = NULL;
+            LEFT(PARENT(node)) = NULL;
             break;
 
         case R:
-            RIGHT(PARENT(nd)) = NULL;
+            RIGHT(PARENT(node)) = NULL;
             break;
 
         default:;
     }
 
-    node_Dtor(nd);
-    free(nd);
+    node_Dtor(node);
+    free(node);
 
-    (tr->ver_num)--;
+    (tree->ver_num)--;
     return 0;
 }
 
-int node_define(Node* nd)                       // get side of the node related to the parent
+int node_define(Node* node)                       // get side of the node related to the parent
 {
-    assert(nd);
+    assert(node);
 
-    if (PARENT(nd))
+    if (PARENT(node))
     {
-        if (LEFT(PARENT(nd)) == nd)
+        if (LEFT(PARENT(node)) == node)
             return L;
-        if (RIGHT(PARENT(nd)) == nd)
+        if (RIGHT(PARENT(node)) == node)
             return R;
     }
     return NOPARENT;
 }
 
-Node* node_find(Node* nd, tree_type val, int (*info_cmp)(tree_type, tree_type))
+Node* node_find(Node* start_node, tree_type val, int (*info_cmp)(tree_type, tree_type))
 {
     assert(info_cmp);
 
-    if (!nd)
+    if (!start_node)
     {
         return NULL;
     }
 
-    if (!info_cmp(val, nd->info))
+    if (!info_cmp(val, start_node->info))
     {
-        return nd;
+        return start_node;
     }
     else
     {
-        Node* left = node_find(LEFT(nd), val, info_cmp);
+        Node* left = node_find(LEFT(start_node), val, info_cmp);
         if (left)
             return left;
 
-        Node* right = node_find(RIGHT(nd), val, info_cmp);
+        Node* right = node_find(RIGHT(start_node), val, info_cmp);
         if (right)
             return right;
 
@@ -257,90 +264,90 @@ Node* node_find(Node* nd, tree_type val, int (*info_cmp)(tree_type, tree_type))
     }
 }
 
-Node* tree_find_common(Node* nd1, Node* nd2, int* nd1_mode)              // nd1_mode - side of nd1 related to common
+Node* tree_find_common(Node* node1, Node* node2, int* out_node1_position)              // out_node1_position - side of node1 related to common
 {
-    assert(nd1 && nd2);
+    assert(node1 && node2);
 
-    size_t h1 = node_get_height(nd1);
-    size_t h2 = node_get_height(nd2);
+    size_t height1 = node_get_height(node1);
+    size_t height2 = node_get_height(node2);
 
-    while (h1 != h2)
+    while (height1 != height2)
     {
-        if (h1 > h2)
+        if (height1 > height2)
         {
-            nd1 = PARENT(nd1);
-            h1--;
+            node1 = PARENT(node1);
+            height1--;
         }
         else
         {
-            nd2 = PARENT(nd2);
-            h2--;
+            node2 = PARENT(node2);
+            height2--;
         }
     }
 
-    while (nd1 != nd2)
+    while (node1 != node2)
     {
-        *nd1_mode = node_define(nd1);
-        nd1 = PARENT(nd1);
-        nd2 = PARENT(nd2);
+        *out_node1_position = node_define(node1);
+        node1 = PARENT(node1);
+        node2 = PARENT(node2);
     }
 
-    return nd1;
+    return node1;
 }
 
-size_t node_get_height(Node* nd)
+size_t node_get_height(Node* node)
 {
-    assert(nd);
+    assert(node);
 
-    size_t h = 0;
+    size_t height = 0;
 
-    while (PARENT(nd))
+    while (PARENT(node))
     {
-        nd = PARENT(nd);
-        h++;
+        node = PARENT(node);
+        height++;
     }
 
-    return h;
+    return height;
 }
 
-void tree_print(Tree* tr, const char WRITENAME[])
+void tree_print(Tree* tree, const char WRITENAME[])
 {
-    FILE* writetxt = fopen(WRITENAME, "w");
-    assert(tr && writetxt);
+    FILE* print_file = fopen(WRITENAME, "w");
+    assert(tree && print_file);
 
-    node_print(ROOT(tr), writetxt);
+    node_print(ROOT(tree), print_file);
 
-    fclose(writetxt);
+    fclose(print_file);
 }
 
-void node_print(Node* nd, FILE* writetxt)
+void node_print(Node* node, FILE* print_file)
 {
-    assert(writetxt);
+    assert(print_file);
 
-    if (!nd)
+    if (!node)
     {
-        fprintf(writetxt, "{nil}");
+        fprintf(print_file, "{nil}");
         return;
     }
-    fprintf(writetxt,"{%s\n", nd->info);
+    fprintf(print_file, "{%s\n", node->info);
 
-    node_print(LEFT(nd), writetxt);
-    node_print(RIGHT(nd), writetxt);
+    node_print(LEFT(node), print_file);
+    node_print(RIGHT(node), print_file);
 
-    fprintf(writetxt,"}\n");
+    fprintf(print_file, "}\n");
 }
 
 Tree* tree_read(const char READNAME[])
 {
-    Tree* tr = (Tree*) calloc(1, sizeof(*tr));
-    tree_Ctor(tr);
+    Tree* tree = (Tree*) calloc(1, sizeof(*tree));
+    tree_Ctor(tree);
 
     FILE* readtxt = fopen(READNAME, "r");
     assert(readtxt);
 
     int error = 0;
 
-    tree_set_root(tr, node_read(readtxt, tr, &error));
+    tree_set_root(tree, node_read(readtxt, tree, &error));
 
     if (error)
     {
@@ -349,64 +356,70 @@ Tree* tree_read(const char READNAME[])
     }
 
     fclose(readtxt);
-    return tr;
+    return tree;
 }
 
-#define SKIPSPACES while((c = fgetc(file)) == ' ' || c == '\n');\
-                    ungetc(c, file);
+#define SKIPSPACES while(isspace(c = fgetc(read_file)));\
+                    ungetc(c, read_file);
 
-#define SYNERROR *error = ftell(file);\
+#define SYNERROR *error = ftell(read_file);\
                  return NULL;
 
-#define C_READ (c = fgetc(file))
+#define C_READ (c = fgetc(read_file))
 #define IFERROR if (*error) return NULL;
 
-Node* node_read(FILE* file, Tree* tr, int* error)
+Node* node_read(FILE* read_file, Tree* tree, int* error)
 {
-    assert(file && tr && error);
+    assert(read_file && tree && error);
 
     int c = 0;
 
     SKIPSPACES;
     if (C_READ == '{')
     {
-        Node* nd = get_node(file, error);
-        if (!nd)
+        Node* node = get_node(read_file, error);
+        if (!node)
         {
             return NULL;
         }
 
-        LEFT(nd)= node_read(file, tr, error);
-        if (LEFT(nd))
-            PARENT(LEFT(nd)) = nd;
+        LEFT(node)= node_read(read_file, tree, error);
+
+        if (LEFT(node))
+            PARENT(LEFT(node)) = node;
+
         IFERROR;
 
-        RIGHT(nd) = node_read(file, tr, error);
-        if (RIGHT(nd))
-            PARENT(RIGHT(nd)) = nd;
+        RIGHT(node) = node_read(read_file, tree, error);
+
+        if (RIGHT(node))
+            PARENT(RIGHT(node)) = node;
+
         IFERROR;
 
-        ++(tr->ver_num);
+        ++(tree->ver_num);
 
         SKIPSPACES;
         if (C_READ != '}')
         {
             SYNERROR;
         }
+
         SKIPSPACES;
-        return nd;
+
+        return node;
     }
     else
     {
-        ungetc(c, file);
+        ungetc(c, read_file);
         SYNERROR;
     }
 }
 
-Node* get_node(FILE* file, int* error)
+Node* get_node(FILE* read_file, int* error)
 {
-    assert(file && error);
-    Node* nd = NULL;
+    assert(read_file && error);
+    Node* node = NULL;
 
     int c = 0;
     SKIPSPACES;
@@ -422,23 +435,23 @@ Node* get_node(FILE* file, int* error)
             }
             count ++;
         }
-        return nd;
+        return node;
     }
-    ungetc(c, file);
+    ungetc(c, read_file);
 
-    tree_type info = get_str(file, error);
-    nd = node_create(info);
+    tree_type info = get_str(read_file, error);
+    node = node_create(info);
 
-    return nd;
+    return node;
 }
 
-char* get_str(FILE* file, int* error)
+char* get_str(FILE* read_file, int* error)
 {
-    assert(file);
+    assert(read_file);
 
     char* buff = (char*) calloc(STRLEN, sizeof(char));
 
-    if (!(fgets(buff, STRLEN, file)))
+    if (!(fgets(buff, STRLEN, read_file)))
     {
         SYNERROR;
     }
@@ -462,28 +475,28 @@ char* remove_shift(char* str, int length)
     return str;
 }
 #define DO_REAL_HASH  \
-                    int StructHash_buf = tr->TreeHash_struct;\
-                    tr->TreeHash_struct = HASHDEFAULT;\
-                    int RealHash_buf = hash (tr, sizeof (*tr));
+                    int StructHash_buf = tree->TreeHash_struct;\
+                    tree->TreeHash_struct = HASHDEFAULT;\
+                    int RealHash_buf = hash (tree, sizeof (*tree));
 
-#define RE_STORE tr->TreeHash_struct = StructHash_buf;\
+#define RE_STORE tree->TreeHash_struct = StructHash_buf;\
 
-int tree_is_OK(Tree* tr)
+int tree_is_OK(Tree* tree)
 {
-    assert(tr);
+    assert(tree);
     int error = TRERROK;
 
-    unsigned int count = 0;
+    unsigned int counter = 0;
 
-    node_is_OK(ROOT(tr), &count);
+    node_is_OK(ROOT(tree), &counter);
 
-    if (tr->ver_num > count)
+    if (tree->ver_num > counter)
     {
         return TRERLEN;
     }
 
     DO_REAL_HASH;
-    if ((tr->tree_guard_begin != GUARD) || (tr->tree_guard_end != GUARD) ||  RealHash_buf != StructHash_buf)
+    if ((tree->tree_guard_begin != GUARD) || (tree->tree_guard_end != GUARD) ||  RealHash_buf != StructHash_buf)
     {
         return TRERSTRUCT;
     }
@@ -493,27 +506,27 @@ int tree_is_OK(Tree* tr)
 }
 
 
-#define IFRETURN(cond) if (cond) return (cond);
+#define IF_RETURN(cond) if (cond) return (cond);
 
-int node_is_OK(Node* nd, unsigned int* num)
+int node_is_OK(Node* node, unsigned int* counter)
 {
-    if (!nd)
+    if (!node)
     {
         return TRERROK;
     }
 
-    int lerror = node_is_OK(LEFT(nd), num);
-    int rerror = node_is_OK(RIGHT(nd), num);
+    int left_error = node_is_OK(LEFT(node), counter);
+    int right_error = node_is_OK(RIGHT(node), counter);
 
-    IFRETURN(lerror);
-    IFRETURN(rerror);
+    IF_RETURN(left_error);
+    IF_RETURN(right_error);
 
-    if ((nd->node_guard_begin != GUARD) || (nd->node_guard_end != GUARD))
+    if ((node->node_guard_begin != GUARD) || (node->node_guard_end != GUARD))
     {
         return TRERDATA;
     }
 
-    (*num)++;
+    (*counter)++;
     return TRERROK;
 }
 
@@ -522,21 +535,21 @@ int node_is_OK(Node* nd, unsigned int* num)
                                     printf("   " MESSAGE "\n");\
                                     break;
 
-int tree_dump(const char dot[], const char DUMPNAME[], Tree* tr)
+int tree_dump(const char dot[], const char DUMPNAME[], Tree* tree)
 {
-    assert(tr);
+    assert(tree);
 
     printf("\n~In File: %s\n~In Line: %d\n", __FILE__, __LINE__);
-    printf("~Tree [0x%X]\n~{\n   Vertex number = %u\n   Root = [0x%X]\n", (out_ptr) tr, tr->ver_num, (out_ptr) ROOT(tr));
-    printf("   Struct_guard_begin  = %s\n", ((tr->tree_guard_begin) == GUARD) ? "GUARD": "ERROR");
-    printf("   Struct_guard_end    = %s\n",   ((tr->tree_guard_end) == GUARD) ? "GUARD": "ERROR");
+    printf("~Tree [0x%X]\n~{\n   Vertex number = %u\n   Root = [0x%X]\n", (out_ptr) tree, tree->ver_num, (out_ptr) ROOT(tree));
+    printf("   Struct_guard_begin  = %s\n", ((tree->tree_guard_begin) == GUARD) ? "GUARD": "ERROR");
+    printf("   Struct_guard_end    = %s\n",   ((tree->tree_guard_end) == GUARD) ? "GUARD": "ERROR");
 
     DO_REAL_HASH;
     printf("   In memory Struct_Hash = %i\n", StructHash_buf);
     printf("        Real Struct_Hash = %i\n", RealHash_buf);
     RE_STORE;
     printf("   INFO: \n");\
-    switch(tree_is_OK(tr))
+    switch(tree_is_OK(tree))
     {
         CASE_TREE_OK(TRERROK,    "Tree is OK");
         CASE_TREE_OK(TRERDATA,   "Data memory in the tree was damaged");
@@ -550,27 +563,31 @@ int tree_dump(const char dot[], const char DUMPNAME[], Tree* tr)
 
     printf("~}\n\n");
 
-    if (tree_draw(dot, DUMPNAME, tr))
+    if (tree_draw(dot, DUMPNAME, tree))
         return 1;
 
     return 0;
 }
 
 #define NONE_ND(pos) strcat(dump_str, #pos "%i[shape = none, label = \"\"];\n %i:<" #pos "> -> " #pos "%i[style = \"invis\"];\n")
+
 #define GET_ND(pos, label) strcat(dump_str, "%i:<" #pos "> -> %i [label = \"" #label "\"|;\n")
-#define WRITE_ARG file, dump_str, nd, PARENT(nd), nd->info, nd, LEFT(nd), RIGHT(nd)
+
+#define WRITE_ARG   dump_file, dump_str, node, PARENT(node), node->info, node, LEFT(node), RIGHT(node)
+
 #define CASE_EDGE(val, body) case (val):\
                                     body;\
                                     break
-#define CHILDSUMIF(cond, increm) if (cond)\
+
+#define CHILD_SUM_IF(cond, increm) if (cond)\
                                 {\
                                     child += (increm);\
                                 }
 
 
-int node_dump(FILE* file, Node* nd)
+int node_dump(FILE* dump_file, Node* node)
 {
-    if (!nd)
+    if (!node)
     {
         return 0;
     }
@@ -578,45 +595,47 @@ int node_dump(FILE* file, Node* nd)
     char dump_str[150] = "%i [shape = record, label = \" {%p | \\\"%s?\\\" | %p | {<l> %p | <r> %p }} \"];\n";
 
     int child = 0;
-    CHILDSUMIF (LEFT(nd), 1);
-    CHILDSUMIF (RIGHT(nd),2);
+    CHILD_SUM_IF (LEFT(node), 1);
+    CHILD_SUM_IF (RIGHT(node),2);
 
     switch(child)
     {
-        CASE_EDGE (1, NONE_ND(r); GET_ND(l, "Да"); fprintf(WRITE_ARG, nd, nd, nd, nd, LEFT(nd)));
-        CASE_EDGE (2, NONE_ND(l); GET_ND(r, "Нет"); fprintf(WRITE_ARG, nd, nd, nd, nd, RIGHT(nd)));
+        CASE_EDGE (1, NONE_ND(r); GET_ND(l, "Да"); fprintf(WRITE_ARG, node, node, node, node, LEFT(node)));
+        CASE_EDGE (2, NONE_ND(l); GET_ND(r, "Нет"); fprintf(WRITE_ARG, node, node, node, node, RIGHT(node)));
         CASE_EDGE (3, strcat(dump_str, "%i:<l> -> %i [label = \"Да\"];\n %i:<r> -> %i [label = \"Нет\"];\n");
-                    fprintf(WRITE_ARG, nd, LEFT(nd), nd, RIGHT(nd)));
+                    fprintf(WRITE_ARG, node, LEFT(node), node, RIGHT(node)));
     default:
         fprintf(WRITE_ARG);
     }
 
-    node_dump(file, LEFT(nd));
-    node_dump(file, RIGHT(nd));
+    node_dump(dump_file, LEFT(node));
+    node_dump(dump_file, RIGHT(node));
 
     return 0;
 }
 
 #define TO_GRAPHVIZ(gv_name, DUMPNAME) strdup(DUMPNAME); strcat(gv_name, ".gv")
+
 #define TO_PNG(png_name, DUMPNAME) strdup(DUMPNAME); strcat(png_name, ".png")
+
 #define CONCAT_DOT(arg)    strcat(dotty, arg)
 
 
-int tree_draw(const char dot[], const char DUMPNAME[], Tree* tr)
+int tree_draw(const char dot[], const char DUMPNAME[], Tree* tree)
 {
     char* gv_name = TO_GRAPHVIZ(gv_name, DUMPNAME);  // make grathviz file name
     char* png_name = TO_PNG(png_name, DUMPNAME);     // make bmp file name
 
 
-    FILE* dumptxt = fopen(gv_name, "w");
-    if (!dumptxt) return 1;
+    FILE* dump_file = fopen(gv_name, "w");
+    if (!dump_file) return 1;
 
-    fprintf(dumptxt, "digraph ge\n{\n splines = \"polyline\";\n");
+    fprintf(dump_file, "digraph ge\n{\n splines = \"polyline\";\n");
 
-    node_dump(dumptxt, ROOT(tr));
+    node_dump(dump_file, ROOT(tree));
 
-    fprintf(dumptxt, "}");
-    fclose(dumptxt);
+    fprintf(dump_file, "}");
+    fclose(dump_file);
 
 
     char* dotty = (char*) calloc(200, sizeof(*dotty));
@@ -631,4 +650,6 @@ int tree_draw(const char dot[], const char DUMPNAME[], Tree* tr)
     free(gv_name);
     free(png_name);
     free(dotty);
+
+    return 0;
 }

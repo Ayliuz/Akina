@@ -32,6 +32,8 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="Expert.cpp" />
+		<Unit filename="Expert.h" />
 		<Unit filename="PtrList.cpp" />
 		<Unit filename="PtrList.h" />
 		<Unit filename="Tree.cpp" />

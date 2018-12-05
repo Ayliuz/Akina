@@ -69,46 +69,46 @@ struct Tree
     int tree_guard_end = GUARDPOIS;
 };
 
-void tree_present(const char dot[]);
+void tree_test(const char dot[]);
 
-void tree_Ctor(Tree*);
-void tree_Dtor(Tree*);
+void tree_Ctor(Tree* tree);
+void tree_Dtor(Tree* tree);
 
-void node_Ctor(Node*);
-void node_Dtor(Node*);
+void node_Ctor(Node* node);
+void node_Dtor(Node* node);
 
-void tree_make_hash(Tree*);
+void tree_make_hash(Tree* tree);
 
-Node* tree_set_root(Tree*, Node*);
-Node* node_create(tree_type);
+Node* tree_set_root(Tree* tree, Node* root);
+Node* node_create(tree_type val);
 
-Node* tree_insert_left(Tree*, Node*, tree_type);
-Node* tree_insert_right(Tree*, Node*, tree_type);
+Node* tree_insert_left(Tree* tree, Node* parent_node, tree_type new_val);
+Node* tree_insert_right(Tree* tree, Node* parent_node, tree_type new_val);
 
-Node* node_find(Node*, tree_type, int (*)(tree_type,tree_type));
-int node_define(Node*);
+Node* node_find(Node* start_node, tree_type val, int (*compare)(tree_type value1, tree_type value2));
+int node_define(Node* node);                            // get side of the node related to the parent
 
-Node* tree_find_common(Node*, Node*, int*);
-size_t node_get_height(Node*);
+Node* tree_find_common(Node* node1, Node* node2, int* out_node1_position);
+size_t node_get_height(Node* node);
 
-Tree* tree_clear(Tree*);
-int tree_cut(Tree*, Node*);
-int tree_erase(Tree*, Node*);
+Tree* tree_clear(Tree* tree);
+int tree_cut(Tree* tree, Node* node);
+int tree_erase(Tree* tree, Node* node);
 
-int tree_is_OK(Tree*);
-int node_is_OK(Node*, unsigned int*);
+int tree_is_OK(Tree* tree);
+int node_is_OK(Node* node, unsigned int* counter);
 
-int tree_dump(const char*, const char*, Tree*);
-int node_dump(FILE*, Node*);
-int tree_draw(const char dot[], const char DUMPNAME[], Tree*);
+int tree_dump(const char dot[], const char DUMPNAME[], Tree* tree);
+int node_dump(FILE* dump_file, Node* node);
+int tree_draw(const char dot[], const char DUMPNAME[], Tree* tree);
 
-void tree_print(Tree*, const char*);
-void node_print(Node*, FILE*);
+void tree_print(Tree* tree, const char PRINTNAME[]);
+void node_print(Node* node, FILE* print_file);
 
-Tree* tree_read(const char*);
-Node* node_read(FILE*, Tree*, int*);
-Node* get_node(FILE*, int*);
-char* get_str(FILE*, int*);
-char* remove_shift(char*, int);
+Tree* tree_read(const char READNAME[]);
+Node* node_read(FILE* read_file, Tree* tree, int* error);
+Node* get_node(FILE* read_file, int* error);
+char* get_str(FILE* read_file, int* error);
+char* remove_shift(char* str, int length);
 
 #endif // TREE_H_INCLUDED

@@ -24,11 +24,14 @@
 int Akinator(const char dot[], const char* SAVENAME);
 int expert_get_answer();
 int expert_cheer();
-Node* expert_new_item(Tree*, Node*, int POS);
-Node* expert_new_branch(Tree*, Node*);
-int expert_get_definition(Tree*);
-int expert_get_comparison(Tree*);
-int expert_info_cmp(tree_type, tree_type);
-int expert_print_way(Node*, const char*, int mode);                         // includes input nd info
+
+Node* expert_new_item(Tree* tree, Node* node, int POS);
+Node* expert_new_branch(Tree* tree, Node* node);
+
+int expert_get_definition(Tree* tree);
+int expert_get_comparison(Tree* tree);
+
+int expert_info_cmp(tree_type value1, tree_type value2);
+int expert_print_way(Node* node, const char* separate, int mode);                         // includes input nd info
 
 #endif // EXPERT_H_INCLUDED

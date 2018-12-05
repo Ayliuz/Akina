@@ -35,7 +35,7 @@ typedef unsigned int out_ptr;
 
 struct PtrListElem
 {
-    int lelem_guard_begin = GUARDPOIS;
+    int list_elem_guard_begin = GUARDPOIS;
 
     PtrListElem* prev = NULL;
 
@@ -43,7 +43,7 @@ struct PtrListElem
 
     PtrListElem* next = NULL;
 
-    int lelem_guard_end = GUARDPOIS;
+    int list_elem_guard_end = GUARDPOIS;
 };
 
 struct MyPtrList
@@ -60,23 +60,32 @@ struct MyPtrList
     int plist_guard_end = GUARDPOIS;
 };
 
-void ptr_list_present(const char* ,const char*);
+void ptr_list_test(const char* dot);
 
-void plist_Ctor(MyPtrList*);
-void plist_Dtor(MyPtrList*);
-void plist_elem_Ctor(PtrListElem*);
-void plist_elem_Dtor(PtrListElem*);
-void plmake_hash(MyPtrList*);
-PtrListElem* plist_push_back(MyPtrList*, list_type);
-PtrListElem* plist_push_front(MyPtrList*, list_type);
-PtrListElem* plist_insert(MyPtrList*, PtrListElem*, list_type);                 // behind input element
-int plist_pop_back(MyPtrList*);
-int plist_pop_front(MyPtrList*);
-int plist_erase(MyPtrList*, PtrListElem*);
-int plist_clear(MyPtrList*);
-int plist_is_OK(MyPtrList*);
-int plelem_is_OK(PtrListElem*);
-int plist_dump(const char*, const char*, MyPtrList*);
-char* plelem_dump(PtrListElem*);
+void plist_Ctor(MyPtrList* list);
+void plist_Dtor(MyPtrList* list);
+
+void plist_elem_Ctor(PtrListElem* elem);
+void plist_elem_Dtor(PtrListElem* elem);
+PtrListElem* plist_elem_create(list_type val);
+
+void plist_make_hash(MyPtrList* list);
+
+PtrListElem* plist_push_back(MyPtrList* list, list_type val);
+PtrListElem* plist_push_front(MyPtrList* list, list_type val);
+
+PtrListElem* plist_insert(MyPtrList* list, PtrListElem* elem, list_type val);                 // behind input element
+int plist_pop_back(MyPtrList* list);
+int plist_pop_front(MyPtrList*list);
+
+int plist_erase(MyPtrList* list, PtrListElem* elem);
+int plist_clear(MyPtrList* list);
+
+int plist_is_OK(MyPtrList* list);
+int plist_elem_is_OK(PtrListElem* elem);
+
+int plist_dump(const char dot[], const char DUMPNAME[], MyPtrList* list);
+char* plist_elem_dump(PtrListElem* elem);
+int plist_draw(const char dot[], const char DUMPNAME[], MyPtrList* list);
 
 #endif // PTRLIST_H_INCLUDED
