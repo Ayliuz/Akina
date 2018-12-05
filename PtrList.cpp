@@ -2,6 +2,31 @@
 
 #include "PtrList.h"
 
+void ptr_list_present(const char dot[])
+{
+    const char LISTDUMP[10] = "list";
+
+    MyPtrList list;
+    plist_Ctor(&list);
+
+    plist_push_back(&list, 12);
+
+    PtrListElem* k = plist_push_front(&list, 144);
+    plist_insert(&list, k, 156);
+
+    PtrListElem* del = plist_push_back(&list, 2222);
+    plist_push_back(&list, 3333);
+    plist_push_back(&list, 45454);
+    plist_push_front(&list, 890);
+    plist_erase(&list, del);
+    for (int i = 0; i < 20; i++) plist_insert(&list, k, i*i + 2);
+
+    plist_dump(dot, LISTDUMP, &list);
+
+    plist_Dtor(&list);
+}
+
+
 //************************************
 /// Constructs MyPtrList object and initialize it.
 ///

@@ -24,13 +24,14 @@
 	<math.h>
 	<ctype.h>
 
-1543520694 source:c:\users\zue26\documents\github\akina\main.cpp
+1543775409 source:c:\users\zue26\documents\github\akina\main.cpp
 	"D:\TX\TXlib.h"
 	<iostream>
 	<stdio.h>
 	<stdlib.h>
 	"PtrList.h"
 	"Tree.h"
+	"Expert.h"
 
 1543496494 d:\tx\txlib.h
 	<assert.h>
@@ -75,7 +76,7 @@
 	<rtcapi.h>
 	<dbghelp.h>
 
-1543427433 c:\users\zue26\documents\github\akina\ptrlist.h
+1543967125 c:\users\zue26\documents\github\akina\ptrlist.h
 	<stdio.h>
 	<stdlib.h>
 	<cstdlib>
@@ -86,10 +87,10 @@
 	<ctype.h>
 	"stack.h"
 
-1543527027 source:c:\users\zue26\documents\github\akina\tree.cpp
+1543971259 source:c:\users\zue26\documents\github\akina\tree.cpp
 	"Tree.h"
 
-1543424951 c:\users\zue26\documents\github\akina\tree.h
+1543971114 c:\users\zue26\documents\github\akina\tree.h
 	<stdio.h>
 	<stdlib.h>
 	<cstdlib>
@@ -101,6 +102,21 @@
 	<direct.h>
 	"stack.h"
 
-1543427432 source:c:\users\zue26\documents\github\akina\ptrlist.cpp
+1543667731 source:c:\users\zue26\documents\github\akina\ptrlist.cpp
 	"PtrList.h"
+
+1543971344 source:c:\users\zue26\documents\github\akina\expert.cpp
+	"Expert.h"
+
+1543971084 c:\users\zue26\documents\github\akina\expert.h
+	<stdio.h>
+	<stdlib.h>
+	<cstdlib>
+	<iostream>
+	<assert.h>
+	<string.h>
+	<math.h>
+	<ctype.h>
+	<locale>
+	"Tree.h"
 

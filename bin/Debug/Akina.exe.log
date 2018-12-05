@@ -8490,3 +8490,3915 @@ Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
 Directory:	C:\Users\zue26\Documents\GitHub\Akina
 
 --------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: signal (22, 0x00): SIGABRT: Аварийное завершение программы, вызвана функция abort(). 
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#1: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x004FE2C0 (32-bit), Flags: Cmdre0, Thread: 0x80C0 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00409894 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: _txOnSignal() at D:/TX/TXlib.h (8699)
+# 1 0x76516F61 in C:\WINDOWS\System32\msvcrt.dll: raise()
+# 2 0x7651B40B in C:\WINDOWS\System32\msvcrt.dll: abort()
+# 3 0x76517D8C in C:\WINDOWS\System32\msvcrt.dll: assert()
+
+# 4 0x0042179A in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: node_print() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (176):
+
+    174: void node_print(Node* nd, FILE* writetxt)
+    175: {
+=>  176:     assert(nd && writetxt);
+    177: 
+    178:     if (!nd)
+
+# 5 0x004217F7 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: node_print() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (184):
+
+    182:     }
+    183:     fprintf(writetxt,"{%lg", nd->info);
+=>  184:     node_print(LEFT(nd), writetxt);
+    185:     node_print(RIGHT(nd), writetxt);
+    186:     printf("}");
+
+# 6 0x004217F7 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: node_print() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (184):
+
+    182:     }
+    183:     fprintf(writetxt,"{%lg", nd->info);
+=>  184:     node_print(LEFT(nd), writetxt);
+    185:     node_print(RIGHT(nd), writetxt);
+    186:     printf("}");
+
+# 7 0x004217F7 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: node_print() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (184):
+
+    182:     }
+    183:     fprintf(writetxt,"{%lg", nd->info);
+=>  184:     node_print(LEFT(nd), writetxt);
+    185:     node_print(RIGHT(nd), writetxt);
+    186:     printf("}");
+
+# 8 0x0042175E in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: tree_print() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (169):
+
+    167:     assert(tr && writetxt);
+    168: 
+=>  169:     node_print(ROOT(tr), writetxt);
+    170: 
+    171:     fclose(writetxt);
+
+# 9 0x0041A2F1 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (40):
+
+     38:     tree_insert_right(&tr, root, 666);
+     39: 
+=>   40:     tree_print(&tr, WRITENAME);
+     41:     tree_dump(dot, TREEDUMP, &tr);
+     42: 
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  1 2018 13:26:35, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 01 2018 13:26:38
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x765524A9 в функции $I10_OUTPUT(). Попытка записать данные по адресу NULL. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x004FE2C0 (32-bit), Flags: Cmdre0, Thread: 0x6CB4 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x765524A9 in C:\WINDOWS\System32\msvcrt.dll: $I10_OUTPUT()
+# 1 0x7653F950 in C:\WINDOWS\System32\msvcrt.dll: ungetwc()
+# 2 0x765338C0 in C:\WINDOWS\System32\msvcrt.dll: fscanf_s()
+# 3 0x7653379B in C:\WINDOWS\System32\msvcrt.dll: fscanf()
+
+# 4 0x004219A8 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: node_read() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (224):
+
+    222:         ungetc(c, file);
+    223:         tree_type info = 0;
+=>  224:         fscanf(file, "%lf", info);
+    225:         nd = create_node(info);
+    226:         nd->left = node_read(file, tr);
+
+# 5 0x00421886 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: tree_read() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (197):
+
+    195:     assert(readtxt);
+    196: 
+=>  197:     if(tr->root = node_read(readtxt, tr))
+    198:     {
+    199:         return NULL;
+
+# 6 0x0041A31A in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (43):
+
+     41:     tree_dump(dot, TREEDUMP, &tr);
+     42: 
+=>   43:     Tree* tr1 = tree_read(WRITENAME);
+     44:     tree_dump(dot, TREE1DUMP, tr1);
+     45: 
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  1 2018 13:26:35, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 01 2018 13:27:20
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x765524A9 в функции $I10_OUTPUT(). Попытка записать данные по адресу NULL. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x004FE2C0 (32-bit), Flags: Cmdre0, Thread: 0x6CB4 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x765524A9 in C:\WINDOWS\System32\msvcrt.dll: $I10_OUTPUT()
+# 1 0x7653F950 in C:\WINDOWS\System32\msvcrt.dll: ungetwc()
+# 2 0x765338C0 in C:\WINDOWS\System32\msvcrt.dll: fscanf_s()
+# 3 0x7653379B in C:\WINDOWS\System32\msvcrt.dll: fscanf()
+
+# 4 0x004219A8 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: node_read() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (224):
+
+    222:         ungetc(c, file);
+    223:         tree_type info = 0;
+=>  224:         fscanf(file, "%lf", info);
+    225:         nd = create_node(info);
+    226:         nd->left = node_read(file, tr);
+
+# 5 0x00421886 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: tree_read() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (197):
+
+    195:     assert(readtxt);
+    196: 
+=>  197:     if(tr->root = node_read(readtxt, tr))
+    198:     {
+    199:         return NULL;
+
+# 6 0x0041A31A in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (43):
+
+     41:     tree_dump(dot, TREEDUMP, &tr);
+     42: 
+=>   43:     Tree* tr1 = tree_read(WRITENAME);
+     44:     tree_dump(dot, TREE1DUMP, tr1);
+     45: 
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  1 2018 13:26:35, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 01 2018 13:27:20
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x765524A9 в функции $I10_OUTPUT(). Попытка записать данные по адресу NULL. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x004FE2C0 (32-bit), Flags: Cmdre0, Thread: 0x734C (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x765524A9 in C:\WINDOWS\System32\msvcrt.dll: $I10_OUTPUT()
+# 1 0x7653F950 in C:\WINDOWS\System32\msvcrt.dll: ungetwc()
+# 2 0x765338C0 in C:\WINDOWS\System32\msvcrt.dll: fscanf_s()
+# 3 0x7653379B in C:\WINDOWS\System32\msvcrt.dll: fscanf()
+
+# 4 0x004219AF in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: node_read() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (224):
+
+    222:         ungetc(c, file);
+    223:         tree_type info = 0;
+=>  224:         fscanf(file, "%lf", info);
+    225:         nd = create_node(info);
+    226:         nd->left = node_read(file, tr);
+
+# 5 0x0042188D in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: tree_read() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (197):
+
+    195:     assert(readtxt);
+    196: 
+=>  197:     if(tr->root = node_read(readtxt, tr))
+    198:     {
+    199:         return NULL;
+
+# 6 0x0041A31A in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (43):
+
+     41:     tree_dump(dot, TREEDUMP, &tr);
+     42: 
+=>   43:     Tree* tr1 = tree_read(WRITENAME);
+     44:     tree_dump(dot, TREE1DUMP, tr1);
+     45: 
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  1 2018 13:26:35, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 01 2018 13:28:05
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x765524A9 в функции $I10_OUTPUT(). Попытка записать данные по адресу NULL. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x004FE2C0 (32-bit), Flags: Cmdre0, Thread: 0x734C (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x765524A9 in C:\WINDOWS\System32\msvcrt.dll: $I10_OUTPUT()
+# 1 0x7653F950 in C:\WINDOWS\System32\msvcrt.dll: ungetwc()
+# 2 0x765338C0 in C:\WINDOWS\System32\msvcrt.dll: fscanf_s()
+# 3 0x7653379B in C:\WINDOWS\System32\msvcrt.dll: fscanf()
+
+# 4 0x004219AF in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: node_read() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (224):
+
+    222:         ungetc(c, file);
+    223:         tree_type info = 0;
+=>  224:         fscanf(file, "%lf", info);
+    225:         nd = create_node(info);
+    226:         nd->left = node_read(file, tr);
+
+# 5 0x0042188D in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: tree_read() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (197):
+
+    195:     assert(readtxt);
+    196: 
+=>  197:     if(tr->root = node_read(readtxt, tr))
+    198:     {
+    199:         return NULL;
+
+# 6 0x0041A31A in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (43):
+
+     41:     tree_dump(dot, TREEDUMP, &tr);
+     42: 
+=>   43:     Tree* tr1 = tree_read(WRITENAME);
+     44:     tree_dump(dot, TREE1DUMP, tr1);
+     45: 
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  1 2018 13:26:35, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 01 2018 13:28:04
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: signal (22, 0x00): SIGABRT: Аварийное завершение программы, вызвана функция abort(). 
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#1: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x004FE2C0 (32-bit), Flags: Cmdre0, Thread: 0x5D84 (Main), GetLastError(): 183 (Невозможно создать файл, так как он уже существует). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00409894 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: _txOnSignal() at D:/TX/TXlib.h (8699)
+# 1 0x76516F61 in C:\WINDOWS\System32\msvcrt.dll: raise()
+# 2 0x7651B40B in C:\WINDOWS\System32\msvcrt.dll: abort()
+# 3 0x76517D8C in C:\WINDOWS\System32\msvcrt.dll: assert()
+
+# 4 0x00421BAE in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: tree_dump() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (304):
+
+    302: int tree_dump(const char dot[], const char DUMPNAME[], Tree* tr)
+    303: {
+=>  304:     assert(tr);
+    305: 
+    306:     printf("~In File: %s\n~In Line: %d\n", __FILE__, __LINE__);
+
+# 5 0x0041A331 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (44):
+
+     42: 
+     43:     Tree* tr1 = NULL;// = tree_read(WRITENAME);
+=>   44:     tree_dump(dot, TREE1DUMP, tr1);
+     45: 
+     46:     tree_Dtor(tr1);
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  1 2018 13:29:03, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 01 2018 13:29:07
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x765524A9 в функции $I10_OUTPUT(). Попытка записать данные по адресу NULL. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x004FE2C0 (32-bit), Flags: Cmdre0, Thread: 0x7190 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x765524A9 in C:\WINDOWS\System32\msvcrt.dll: $I10_OUTPUT()
+# 1 0x7653F950 in C:\WINDOWS\System32\msvcrt.dll: ungetwc()
+# 2 0x765338C0 in C:\WINDOWS\System32\msvcrt.dll: fscanf_s()
+# 3 0x7653379B in C:\WINDOWS\System32\msvcrt.dll: fscanf()
+
+# 4 0x0042199F in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: node_read() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (224):
+
+    222:         ungetc(c, file);
+    223:         tree_type info = 0;
+=>  224:         fscanf(file, "%lf", info);
+    225:         nd = create_node(info);
+    226:         nd->left = node_read(file, tr);
+
+# 5 0x0042187D in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: tree_read() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (197):
+
+    195:     assert(readtxt);
+    196: 
+=>  197:     if(tr->root = node_read(readtxt, tr))
+    198:     {
+    199:         return NULL;
+
+# 6 0x0041A30B in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (44):
+
+     42: 
+     43:     system(WRITENAME);
+=>   44:     Tree* tr1 = tree_read(WRITENAME);
+     45:     tree_dump(dot, TREE1DUMP, tr1);
+     46: 
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  1 2018 13:34:43, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 01 2018 13:36:06
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x765524A9 в функции $I10_OUTPUT(). Попытка записать данные по адресу NULL. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x004FE2C0 (32-bit), Flags: Cmdre0, Thread: 0x7190 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x765524A9 in C:\WINDOWS\System32\msvcrt.dll: $I10_OUTPUT()
+# 1 0x7653F950 in C:\WINDOWS\System32\msvcrt.dll: ungetwc()
+# 2 0x765338C0 in C:\WINDOWS\System32\msvcrt.dll: fscanf_s()
+# 3 0x7653379B in C:\WINDOWS\System32\msvcrt.dll: fscanf()
+
+# 4 0x0042199F in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: node_read() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (224):
+
+    222:         ungetc(c, file);
+    223:         tree_type info = 0;
+=>  224:         fscanf(file, "%lf", info);
+    225:         nd = create_node(info);
+    226:         nd->left = node_read(file, tr);
+
+# 5 0x0042187D in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: tree_read() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (197):
+
+    195:     assert(readtxt);
+    196: 
+=>  197:     if(tr->root = node_read(readtxt, tr))
+    198:     {
+    199:         return NULL;
+
+# 6 0x0041A30B in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (44):
+
+     42: 
+     43:     system(WRITENAME);
+=>   44:     Tree* tr1 = tree_read(WRITENAME);
+     45:     tree_dump(dot, TREE1DUMP, tr1);
+     46: 
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  1 2018 13:34:43, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 01 2018 13:36:06
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x765524A9 в функции $I10_OUTPUT(). Попытка записать данные по адресу NULL. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x004FE2C0 (32-bit), Flags: Cmdre0, Thread: 0x42B0 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x765524A9 in C:\WINDOWS\System32\msvcrt.dll: $I10_OUTPUT()
+# 1 0x7653F950 in C:\WINDOWS\System32\msvcrt.dll: ungetwc()
+# 2 0x765338C0 in C:\WINDOWS\System32\msvcrt.dll: fscanf_s()
+# 3 0x7653379B in C:\WINDOWS\System32\msvcrt.dll: fscanf()
+
+# 4 0x00421993 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: node_read() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (224):
+
+    222:         ungetc(c, file);
+    223:         tree_type info = 0;
+=>  224:         fscanf(file, "%lf", info);
+    225:         nd = create_node(info);
+    226:         nd->left = node_read(file, tr);
+
+# 5 0x00421871 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: tree_read() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (197):
+
+    195:     assert(readtxt);
+    196: 
+=>  197:     if(tr->root = node_read(readtxt, tr))
+    198:     {
+    199:         return NULL;
+
+# 6 0x0041A2FE in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (43):
+
+     41:     //tree_dump(dot, TREEDUMP, &tr);
+     42: 
+=>   43:     Tree* tr1 = tree_read(WRITENAME);
+     44:     tree_dump(dot, TREE1DUMP, tr1);
+     45: 
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  1 2018 13:39:15, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 01 2018 13:39:18
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x765524A9 в функции $I10_OUTPUT(). Попытка записать данные по адресу NULL. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x004FE2C0 (32-bit), Flags: Cmdre0, Thread: 0x42B0 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x765524A9 in C:\WINDOWS\System32\msvcrt.dll: $I10_OUTPUT()
+# 1 0x7653F950 in C:\WINDOWS\System32\msvcrt.dll: ungetwc()
+# 2 0x765338C0 in C:\WINDOWS\System32\msvcrt.dll: fscanf_s()
+# 3 0x7653379B in C:\WINDOWS\System32\msvcrt.dll: fscanf()
+
+# 4 0x00421993 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: node_read() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (224):
+
+    222:         ungetc(c, file);
+    223:         tree_type info = 0;
+=>  224:         fscanf(file, "%lf", info);
+    225:         nd = create_node(info);
+    226:         nd->left = node_read(file, tr);
+
+# 5 0x00421871 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: tree_read() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (197):
+
+    195:     assert(readtxt);
+    196: 
+=>  197:     if(tr->root = node_read(readtxt, tr))
+    198:     {
+    199:         return NULL;
+
+# 6 0x0041A2FE in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (43):
+
+     41:     //tree_dump(dot, TREEDUMP, &tr);
+     42: 
+=>   43:     Tree* tr1 = tree_read(WRITENAME);
+     44:     tree_dump(dot, TREE1DUMP, tr1);
+     45: 
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  1 2018 13:39:15, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 01 2018 13:39:19
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x765524A9 в функции $I10_OUTPUT(). Попытка записать данные по адресу NULL. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x004FE2C0 (32-bit), Flags: Cmdre0, Thread: 0x7B5C (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x765524A9 in C:\WINDOWS\System32\msvcrt.dll: $I10_OUTPUT()
+# 1 0x7653F950 in C:\WINDOWS\System32\msvcrt.dll: ungetwc()
+# 2 0x765338C0 in C:\WINDOWS\System32\msvcrt.dll: fscanf_s()
+# 3 0x7653379B in C:\WINDOWS\System32\msvcrt.dll: fscanf()
+
+# 4 0x00421993 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: node_read() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (224):
+
+    222:         ungetc(c, file);
+    223:         tree_type info = 0;
+=>  224:         fscanf(file, "%lf", info);
+    225:         nd = create_node(info);
+    226:         nd->left = node_read(file, tr);
+
+# 5 0x00421871 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: tree_read() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (197):
+
+    195:     assert(readtxt);
+    196: 
+=>  197:     if(tr->root = node_read(readtxt, tr))
+    198:     {
+    199:         return NULL;
+
+# 6 0x0041A2FE in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (43):
+
+     41:     //tree_dump(dot, TREEDUMP, &tr);
+     42: 
+=>   43:     Tree* tr1 = tree_read(WRITENAME);
+     44:     tree_dump(dot, TREE1DUMP, tr1);
+     45: 
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  1 2018 13:39:15, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 01 2018 13:39:49
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x765524A9 в функции $I10_OUTPUT(). Попытка записать данные по адресу NULL. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x004FE2C0 (32-bit), Flags: Cmdre0, Thread: 0x7B5C (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x765524A9 in C:\WINDOWS\System32\msvcrt.dll: $I10_OUTPUT()
+# 1 0x7653F950 in C:\WINDOWS\System32\msvcrt.dll: ungetwc()
+# 2 0x765338C0 in C:\WINDOWS\System32\msvcrt.dll: fscanf_s()
+# 3 0x7653379B in C:\WINDOWS\System32\msvcrt.dll: fscanf()
+
+# 4 0x00421993 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: node_read() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (224):
+
+    222:         ungetc(c, file);
+    223:         tree_type info = 0;
+=>  224:         fscanf(file, "%lf", info);
+    225:         nd = create_node(info);
+    226:         nd->left = node_read(file, tr);
+
+# 5 0x00421871 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: tree_read() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (197):
+
+    195:     assert(readtxt);
+    196: 
+=>  197:     if(tr->root = node_read(readtxt, tr))
+    198:     {
+    199:         return NULL;
+
+# 6 0x0041A2FE in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (43):
+
+     41:     //tree_dump(dot, TREEDUMP, &tr);
+     42: 
+=>   43:     Tree* tr1 = tree_read(WRITENAME);
+     44:     tree_dump(dot, TREE1DUMP, tr1);
+     45: 
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  1 2018 13:39:15, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 01 2018 13:39:50
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: signal (22, 0x00): SIGABRT: Аварийное завершение программы, вызвана функция abort(). 
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#1: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x004FE2C0 (32-bit), Flags: Cmdre0, Thread: 0x390C (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00409894 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: _txOnSignal() at D:/TX/TXlib.h (8699)
+# 1 0x76516F61 in C:\WINDOWS\System32\msvcrt.dll: raise()
+# 2 0x7651B40B in C:\WINDOWS\System32\msvcrt.dll: abort()
+# 3 0x76517D8C in C:\WINDOWS\System32\msvcrt.dll: assert()
+
+# 4 0x00421B9A in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: tree_dump() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (304):
+
+    302: int tree_dump(const char dot[], const char DUMPNAME[], Tree* tr)
+    303: {
+=>  304:     assert(tr);
+    305: 
+    306:     printf("~In File: %s\n~In Line: %d\n", __FILE__, __LINE__);
+
+# 5 0x0041A31E in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (44):
+
+     42: 
+     43:     Tree* tr1 = tree_read(WRITENAME);
+=>   44:     tree_dump(dot, TREE1DUMP, tr1);
+     45: 
+     46:     tree_Dtor(tr1);
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  1 2018 13:39:15, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 01 2018 13:40:31
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: signal (22, 0x00): SIGABRT: Аварийное завершение программы, вызвана функция abort(). 
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#1: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x004FE2C0 (32-bit), Flags: Cmdre0, Thread: 0x312C (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00409894 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: _txOnSignal() at D:/TX/TXlib.h (8699)
+# 1 0x76516F61 in C:\WINDOWS\System32\msvcrt.dll: raise()
+# 2 0x7651B40B in C:\WINDOWS\System32\msvcrt.dll: abort()
+# 3 0x76517D8C in C:\WINDOWS\System32\msvcrt.dll: assert()
+
+# 4 0x00421B9A in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: tree_dump() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (304):
+
+    302: int tree_dump(const char dot[], const char DUMPNAME[], Tree* tr)
+    303: {
+=>  304:     assert(tr);
+    305: 
+    306:     printf("~In File: %s\n~In Line: %d\n", __FILE__, __LINE__);
+
+# 5 0x0041A31E in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (44):
+
+     42: 
+     43:     Tree* tr1 = tree_read(WRITENAME);
+=>   44:     tree_dump(dot, TREE1DUMP, tr1);
+     45: 
+     46:     tree_Dtor(tr1);
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  1 2018 13:39:15, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 01 2018 13:40:56
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: signal (22, 0x00): SIGABRT: Аварийное завершение программы, вызвана функция abort(). 
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#1: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x004FE2C0 (32-bit), Flags: Cmdre0, Thread: 0x7A38 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00409894 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: _txOnSignal() at D:/TX/TXlib.h (8699)
+# 1 0x76516F61 in C:\WINDOWS\System32\msvcrt.dll: raise()
+# 2 0x7651B40B in C:\WINDOWS\System32\msvcrt.dll: abort()
+# 3 0x76517D8C in C:\WINDOWS\System32\msvcrt.dll: assert()
+
+# 4 0x00421444 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: tree_set_root() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (78):
+
+     76: Node* tree_set_root(Tree* tr, Node* nd)
+     77: {
+=>   78:     assert(tr && nd);
+     79: 
+     80:     if(ROOT(tr))
+
+# 5 0x0042190C in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: tree_read() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (214):
+
+    212:     int error = 0;
+    213: 
+=>  214:     tree_set_root(tr, node_read(readtxt, tr, &error));
+    215:     tr->ver_num --; // because tree_set_root increase it as well as node_read
+    216: 
+
+# 6 0x0041A2F3 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (42):
+
+     40:     //tree_dump(dot, TREEDUMP, &tr);
+     41: 
+=>   42:     Tree* tr1 = tree_read(WRITENAME);
+     43:     tree_dump(dot, TREE1DUMP, tr1);
+     44: 
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  1 2018 14:54:44, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 01 2018 14:55:21
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: signal (22, 0x00): SIGABRT: Аварийное завершение программы, вызвана функция abort(). 
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#1: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x004FE2C0 (32-bit), Flags: Cmdre0, Thread: 0x43F8 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00409894 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: _txOnSignal() at D:/TX/TXlib.h (8699)
+# 1 0x76516F61 in C:\WINDOWS\System32\msvcrt.dll: raise()
+# 2 0x7651B40B in C:\WINDOWS\System32\msvcrt.dll: abort()
+# 3 0x76517D8C in C:\WINDOWS\System32\msvcrt.dll: assert()
+
+# 4 0x00421444 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: tree_set_root() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (78):
+
+     76: Node* tree_set_root(Tree* tr, Node* nd)
+     77: {
+=>   78:     assert(tr && nd);
+     79: 
+     80:     if(ROOT(tr))
+
+# 5 0x0042190C in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: tree_read() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (214):
+
+    212:     int error = 0;
+    213: 
+=>  214:     tree_set_root(tr, node_read(readtxt, tr, &error));
+    215:     tr->ver_num --; // because tree_set_root increase it as well as node_read
+    216: 
+
+# 6 0x0041A2F3 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (42):
+
+     40:     //tree_dump(dot, TREEDUMP, &tr);
+     41: 
+=>   42:     Tree* tr1 = tree_read(WRITENAME);
+     43:     tree_dump(dot, TREE1DUMP, tr1);
+     44: 
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  1 2018 14:54:44, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 01 2018 14:55:38
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: signal (22, 0x00): SIGABRT: Аварийное завершение программы, вызвана функция abort(). 
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#1: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x004FE2C0 (32-bit), Flags: Cmdre0, Thread: 0x4950 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00409894 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: _txOnSignal() at D:/TX/TXlib.h (8699)
+# 1 0x76516F61 in C:\WINDOWS\System32\msvcrt.dll: raise()
+# 2 0x7651B40B in C:\WINDOWS\System32\msvcrt.dll: abort()
+# 3 0x76517D8C in C:\WINDOWS\System32\msvcrt.dll: assert()
+
+# 4 0x00421D2A in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: tree_dump() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (370):
+
+    368: int tree_dump(const char dot[], const char DUMPNAME[], Tree* tr)
+    369: {
+=>  370:     assert(tr);
+    371: 
+    372:     printf("~In File: %s\n~In Line: %d\n", __FILE__, __LINE__);
+
+# 5 0x0041A313 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (43):
+
+     41: 
+     42:     Tree* tr1 = tree_read(WRITENAME);
+=>   43:     tree_dump(dot, TREE1DUMP, tr1);
+     44: 
+     45:     tree_Dtor(tr1);
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  1 2018 14:54:44, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 01 2018 14:57:18
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: signal (22, 0x00): SIGABRT: Аварийное завершение программы, вызвана функция abort(). 
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#1: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x004FE2C0 (32-bit), Flags: Cmdre0, Thread: 0x1CA4 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00409894 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: _txOnSignal() at D:/TX/TXlib.h (8699)
+# 1 0x76516F61 in C:\WINDOWS\System32\msvcrt.dll: raise()
+# 2 0x7651B40B in C:\WINDOWS\System32\msvcrt.dll: abort()
+# 3 0x76517D8C in C:\WINDOWS\System32\msvcrt.dll: assert()
+
+# 4 0x004212A5 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: tree_Dtor() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (21):
+
+     19: void tree_Dtor(Tree* tr)
+     20: {
+=>   21:     assert(tr);
+     22: 
+     23:     tree_clear(tr);
+
+# 5 0x0041A334 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (48):
+
+     46:         tree_dump(dot, TREE1DUMP, tr1);
+     47: 
+=>   48:     tree_Dtor(tr1);
+     49:     free(tr1);
+     50:     tree_Dtor(&tr);
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  1 2018 14:59:32, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 01 2018 14:59:35
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00421D41 в функции get_node() в файле C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp на строке 335. Попытка прочесть данные по адресу NULL. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x004FE2C0 (32-bit), Flags: Cmdre0, Thread: 0x21BC (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00421D41 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: get_node() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (335):
+
+    333: 
+    334:     nd = node_create(get_str(file, error));
+=>  335:     $(*nd->info);
+    336: 
+    337:     return nd;
+
+# 1 0x00421B12 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: node_read() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (284):
+
+    282:     if(C_READ == '{')
+    283:     {
+=>  284:         Node* nd = get_node(file, error);
+    285:         if(!nd)
+    286:         {
+
+# 2 0x00421A10 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: tree_read() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (256):
+
+    254:     int error = 0;
+    255: 
+=>  256:     tree_set_root(tr, node_read(readtxt, tr, &error));
+    257: 
+    258:     if (error)
+
+# 3 0x00401375 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: Akinator() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (9):
+
+      7:     const char EXPERTDUMP[10] = "tree";
+      8: 
+=>    9:     Tree* Expert = tree_read(SAVENAME);
+     10: 
+     11:     tree_dump(dot, EXPERTDUMP, Expert);
+
+# 4 0x0041A2B5 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (17):
+
+     15:     txSetConsoleAttr (0xf0);
+     16: 
+=>   17:     Akinator(dot, SAVENAME);
+     18: 
+     19:     return 0;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  2 2018 20:08:01, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 02 2018 20:18:10
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00421D41 в функции get_node() в файле C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp на строке 335. Попытка прочесть данные по адресу NULL. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x004FE2C0 (32-bit), Flags: Cmdre0, Thread: 0x21BC (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00421D41 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: get_node() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (335):
+
+    333: 
+    334:     nd = node_create(get_str(file, error));
+=>  335:     $(*nd->info);
+    336: 
+    337:     return nd;
+
+# 1 0x00421B12 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: node_read() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (284):
+
+    282:     if(C_READ == '{')
+    283:     {
+=>  284:         Node* nd = get_node(file, error);
+    285:         if(!nd)
+    286:         {
+
+# 2 0x00421A10 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: tree_read() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (256):
+
+    254:     int error = 0;
+    255: 
+=>  256:     tree_set_root(tr, node_read(readtxt, tr, &error));
+    257: 
+    258:     if (error)
+
+# 3 0x00401375 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: Akinator() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (9):
+
+      7:     const char EXPERTDUMP[10] = "tree";
+      8: 
+=>    9:     Tree* Expert = tree_read(SAVENAME);
+     10: 
+     11:     tree_dump(dot, EXPERTDUMP, Expert);
+
+# 4 0x0041A2B5 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (17):
+
+     15:     txSetConsoleAttr (0xf0);
+     16: 
+=>   17:     Akinator(dot, SAVENAME);
+     18: 
+     19:     return 0;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  2 2018 20:08:01, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 02 2018 20:18:10
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x004013A9 в функции Akinator() в файле C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp на строке 22. Попытка прочесть данные по адресу 0x00000008. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x004FF2C0 (32-bit), Flags: Cmdre0, Thread: 0x7634 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x004013A9 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: Akinator() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (22):
+
+     20:         int que_flag = 0;                                       // Flag if question
+     21: 
+=>   22:         if (*question->info == '?')                             // Question
+     23:         {
+     24:             que_flag = 1;
+
+# 1 0x0041A769 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (17):
+
+     15:     txSetConsoleAttr (0xf0);
+     16: 
+=>   17:     Akinator(dot, SAVENAME);
+     18: 
+     19:     return 0;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  3 2018 01:13:45, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 03 2018 01:26:37
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x004013A9 в функции Akinator() в файле C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp на строке 22. Попытка прочесть данные по адресу 0x00000008. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x004FF2C0 (32-bit), Flags: Cmdre0, Thread: 0x7634 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x004013A9 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: Akinator() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (22):
+
+     20:         int que_flag = 0;                                       // Flag if question
+     21: 
+=>   22:         if (*question->info == '?')                             // Question
+     23:         {
+     24:             que_flag = 1;
+
+# 1 0x0041A769 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (17):
+
+     15:     txSetConsoleAttr (0xf0);
+     16: 
+=>   17:     Akinator(dot, SAVENAME);
+     18: 
+     19:     return 0;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  3 2018 01:13:45, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 03 2018 01:26:37
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x004013A9 в функции Akinator() в файле C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp на строке 22. Попытка прочесть данные по адресу 0x00000008. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x004FF2C0 (32-bit), Flags: Cmdre0, Thread: 0x3610 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x004013A9 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: Akinator() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (22):
+
+     20:         int que_flag = 0;                                       // Flag if question
+     21: 
+=>   22:         if (*question->info == '?')                             // Question
+     23:         {
+     24:             que_flag = 1;
+
+# 1 0x0041A769 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (17):
+
+     15:     txSetConsoleAttr (0xf0);
+     16: 
+=>   17:     Akinator(dot, SAVENAME);
+     18: 
+     19:     return 0;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  3 2018 01:13:45, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 03 2018 01:27:08
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x004013A9 в функции Akinator() в файле C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp на строке 22. Попытка прочесть данные по адресу 0x00000008. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x004FF2C0 (32-bit), Flags: Cmdre0, Thread: 0x3610 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x004013A9 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: Akinator() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (22):
+
+     20:         int que_flag = 0;                                       // Flag if question
+     21: 
+=>   22:         if (*question->info == '?')                             // Question
+     23:         {
+     24:             que_flag = 1;
+
+# 1 0x0041A769 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (17):
+
+     15:     txSetConsoleAttr (0xf0);
+     16: 
+=>   17:     Akinator(dot, SAVENAME);
+     18: 
+     19:     return 0;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  3 2018 01:13:45, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 03 2018 01:27:09
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x004013A9 в функции Akinator() в файле C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp на строке 22. Попытка прочесть данные по адресу 0x00000008. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x004FF2C0 (32-bit), Flags: Cmdre0, Thread: 0x3B40 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x004013A9 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: Akinator() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (22):
+
+     20:         int que_flag = 0;                                       // Flag if question
+     21: 
+=>   22:         if (*question->info == '?')                             // Question
+     23:         {
+     24:             que_flag = 1;
+
+# 1 0x0041A769 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (17):
+
+     15:     txSetConsoleAttr (0xf0);
+     16: 
+=>   17:     Akinator(dot, SAVENAME);
+     18: 
+     19:     return 0;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  3 2018 01:39:52, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 03 2018 01:40:05
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x004013A9 в функции Akinator() в файле C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp на строке 22. Попытка прочесть данные по адресу 0x00000008. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x004FF2C0 (32-bit), Flags: Cmdre0, Thread: 0x3B40 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x004013A9 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: Akinator() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (22):
+
+     20:         int que_flag = 0;                                       // Flag if question
+     21: 
+=>   22:         if (*question->info == '?')                             // Question
+     23:         {
+     24:             que_flag = 1;
+
+# 1 0x0041A769 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (17):
+
+     15:     txSetConsoleAttr (0xf0);
+     16: 
+=>   17:     Akinator(dot, SAVENAME);
+     18: 
+     19:     return 0;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  3 2018 01:39:52, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 03 2018 01:40:05
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x004013A9 в функции Akinator() в файле C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp на строке 22. Попытка прочесть данные по адресу 0x00000008. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x004FF2C0 (32-bit), Flags: Cmdre0, Thread: 0xEDC (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x004013A9 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: Akinator() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (22):
+
+     20:         int que_flag = 0;                                       // Flag if question
+     21: 
+=>   22:         if (*question->info == '?')                             // Question
+     23:         {
+     24:             que_flag = 1;
+
+# 1 0x0041A769 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (17):
+
+     15:     txSetConsoleAttr (0xf0);
+     16: 
+=>   17:     Akinator(dot, SAVENAME);
+     18: 
+     19:     return 0;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  3 2018 01:39:52, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 03 2018 01:40:44
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x004013A9 в функции Akinator() в файле C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp на строке 22. Попытка прочесть данные по адресу 0x00000008. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x004FF2C0 (32-bit), Flags: Cmdre0, Thread: 0xEDC (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x004013A9 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: Akinator() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (22):
+
+     20:         int que_flag = 0;                                       // Flag if question
+     21: 
+=>   22:         if (*question->info == '?')                             // Question
+     23:         {
+     24:             que_flag = 1;
+
+# 1 0x0041A769 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (17):
+
+     15:     txSetConsoleAttr (0xf0);
+     16: 
+=>   17:     Akinator(dot, SAVENAME);
+     18: 
+     19:     return 0;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  3 2018 01:39:52, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 03 2018 01:40:44
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x004013A9 в функции Akinator() в файле C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp на строке 22. Попытка прочесть данные по адресу 0x00000008. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x004FF2C0 (32-bit), Flags: Cmdre0, Thread: 0x8C94 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x004013A9 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: Akinator() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (22):
+
+     20:         int que_flag = 0;                                       // Flag if question
+     21: 
+=>   22:         if (*question->info == '?')                             // Question
+     23:         {
+     24:             que_flag = 1;
+
+# 1 0x0041A769 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (17):
+
+     15:     txSetConsoleAttr (0xf0);
+     16: 
+=>   17:     Akinator(dot, SAVENAME);
+     18: 
+     19:     return 0;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  3 2018 01:39:52, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 03 2018 01:41:57
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x004013A9 в функции Akinator() в файле C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp на строке 22. Попытка прочесть данные по адресу 0x00000008. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x004FF2C0 (32-bit), Flags: Cmdre0, Thread: 0x8C94 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x004013A9 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: Akinator() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (22):
+
+     20:         int que_flag = 0;                                       // Flag if question
+     21: 
+=>   22:         if (*question->info == '?')                             // Question
+     23:         {
+     24:             que_flag = 1;
+
+# 1 0x0041A769 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (17):
+
+     15:     txSetConsoleAttr (0xf0);
+     16: 
+=>   17:     Akinator(dot, SAVENAME);
+     18: 
+     19:     return 0;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  3 2018 01:39:52, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 03 2018 01:41:58
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x004013A9 в функции Akinator() в файле C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp на строке 23. Попытка прочесть данные по адресу 0x0000000C. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x004FF2C0 (32-bit), Flags: Cmdre0, Thread: 0x91D4 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x004013A9 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: Akinator() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (23):
+
+     21:         int que_flag = 0;                                       // Flag if question
+     22: 
+=>   23:         if (*question->info == '?')                             // Question
+     24:         {
+     25:             que_flag = 1;
+
+# 1 0x76516CAD in C:\WINDOWS\System32\msvcrt.dll: atexit()
+
+# 2 0x0041A7B5 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (17):
+
+     15:     txSetConsoleAttr (0xf0);
+     16: 
+=>   17:     Akinator(dot, SAVENAME);
+     18: 
+     19:     return 0;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  3 2018 01:39:52, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 03 2018 16:23:27
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x004013A9 в функции Akinator() в файле C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp на строке 23. Попытка прочесть данные по адресу 0x0000000C. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x004FF2C0 (32-bit), Flags: Cmdre0, Thread: 0x91D4 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x004013A9 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: Akinator() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (23):
+
+     21:         int que_flag = 0;                                       // Flag if question
+     22: 
+=>   23:         if (*question->info == '?')                             // Question
+     24:         {
+     25:             que_flag = 1;
+
+# 1 0x76516CAD in C:\WINDOWS\System32\msvcrt.dll: atexit()
+
+# 2 0x0041A7B5 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (17):
+
+     15:     txSetConsoleAttr (0xf0);
+     16: 
+=>   17:     Akinator(dot, SAVENAME);
+     18: 
+     19:     return 0;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  3 2018 01:39:52, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 03 2018 16:23:27
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x004013A9 в функции Akinator() в файле C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp на строке 23. Попытка прочесть данные по адресу 0x0000000C. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x004FF2C0 (32-bit), Flags: Cmdre0, Thread: 0xB160 (Main), GetLastError(): 183 (Невозможно создать файл, так как он уже существует). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x004013A9 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: Akinator() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (23):
+
+     21:         int que_flag = 0;                                       // Flag if question
+     22: 
+=>   23:         if (*question->info == '?')                             // Question
+     24:         {
+     25:             que_flag = 1;
+
+# 1 0x76516CAD in C:\WINDOWS\System32\msvcrt.dll: atexit()
+
+# 2 0x0041A7B9 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (17):
+
+     15:     txSetConsoleAttr (0xf0);
+     16: 
+=>   17:     Akinator(dot, SAVENAME);
+     18: 
+     19:     return 0;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  3 2018 01:39:52, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 03 2018 16:27:22
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x004013A9 в функции Akinator() в файле C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp на строке 23. Попытка прочесть данные по адресу 0x0000000C. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x004FF2C0 (32-bit), Flags: Cmdre0, Thread: 0xB160 (Main), GetLastError(): 183 (Невозможно создать файл, так как он уже существует). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x004013A9 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: Akinator() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (23):
+
+     21:         int que_flag = 0;                                       // Flag if question
+     22: 
+=>   23:         if (*question->info == '?')                             // Question
+     24:         {
+     25:             que_flag = 1;
+
+# 1 0x76516CAD in C:\WINDOWS\System32\msvcrt.dll: atexit()
+
+# 2 0x0041A7B9 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (17):
+
+     15:     txSetConsoleAttr (0xf0);
+     16: 
+=>   17:     Akinator(dot, SAVENAME);
+     18: 
+     19:     return 0;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  3 2018 01:39:52, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 03 2018 16:27:21
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: signal (22, 0x00): SIGABRT: Аварийное завершение программы, вызвана функция abort(). 
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#1: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x004FF2C0 (32-bit), Flags: Cmdre0, Thread: 0xB760 (Main), errno: 42 (Illegal byte sequence). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x0040A14C in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: _txOnSignal() at D:/TX/TXlib.h (8699)
+# 1 0x76516F61 in C:\WINDOWS\System32\msvcrt.dll: raise()
+# 2 0x7651B40B in C:\WINDOWS\System32\msvcrt.dll: abort()
+# 3 0x76517D8C in C:\WINDOWS\System32\msvcrt.dll: assert()
+
+# 4 0x004220A4 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: node_find() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (221):
+
+    219: Node* node_find(Node* nd, tree_type val, int (*info_cmp)(tree_type, tree_type))
+    220: {
+=>  221:     assert(nd && info_cmp);
+    222: 
+    223:     if(!nd)
+
+# 5 0x004220F0 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: node_find() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (234):
+
+    232:     else
+    233:     {
+=>  234:         Node* left = node_find(LEFT(nd), val, info_cmp);
+    235:         if(left)
+    236:             return left;
+
+# 6 0x004220F0 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: node_find() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (234):
+
+    232:     else
+    233:     {
+=>  234:         Node* left = node_find(LEFT(nd), val, info_cmp);
+    235:         if(left)
+    236:             return left;
+
+# 7 0x004220F0 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: node_find() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (234):
+
+    232:     else
+    233:     {
+=>  234:         Node* left = node_find(LEFT(nd), val, info_cmp);
+    235:         if(left)
+    236:             return left;
+
+# 8 0x004220F0 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: node_find() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (234):
+
+    232:     else
+    233:     {
+=>  234:         Node* left = node_find(LEFT(nd), val, info_cmp);
+    235:         if(left)
+    236:             return left;
+
+# 9 0x00401B67 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: get_comparison() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (229):
+
+    227:     GETSTR(to_define);
+    228: 
+=>  229:     Node* nd = node_find(ROOT(tr), to_define, expert_info_cmp);
+    230: }
+    231: 
+
+#10 0x00401455 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: Akinator() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (61):
+
+     59:         if(comp)
+     60:         {
+=>   61:             get_comparison(Expert);
+     62:             comp = 0;
+     63:             CHEERS;
+
+#11 0x0041AAB1 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (17):
+
+     15:     txSetConsoleAttr (0xf0);
+     16: 
+=>   17:     Akinator(dot, SAVENAME);
+     18: 
+     19:     return 0;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  4 2018 14:49:44, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 04 2018 14:49:59
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: signal (22, 0x00): SIGABRT: Аварийное завершение программы, вызвана функция abort(). 
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#1: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x004FF2C0 (32-bit), Flags: Cmdre0, Thread: 0xACD4 (Main), errno: 42 (Illegal byte sequence). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x0040A314 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: _txOnSignal() at D:/TX/TXlib.h (8699)
+# 1 0x76516F61 in C:\WINDOWS\System32\msvcrt.dll: raise()
+# 2 0x7651B40B in C:\WINDOWS\System32\msvcrt.dll: abort()
+# 3 0x76517D8C in C:\WINDOWS\System32\msvcrt.dll: assert()
+
+# 4 0x00422267 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: tree_print_way() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (221):
+
+    219: int tree_print_way(Node* nd, const char* separate)
+    220: {
+=>  221:     assert(nd);
+    222: 
+    223:     if(!nd)
+
+# 5 0x00422289 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: tree_print_way() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (228):
+
+    226:     }
+    227: 
+=>  228:     tree_print_way(PARENT(nd), separate);
+    229:     printf("%c%s%s ", tolower(*(nd->info + 1)), nd->info + 2, separate);
+    230:     return 0;
+
+# 6 0x00401CBF in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: get_definition() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (245):
+
+    243: 
+    244:     printf("%c%s ", toupper(*to_define), to_define + 1);
+=>  245:     tree_print_way(nd, ",");
+    246: 
+    247: }
+
+# 7 0x004013B6 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: Akinator() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (55):
+
+     53:         if(def)
+     54:         {
+=>   55:             get_definition(Expert);
+     56:             def = 0;
+     57:             CHEERS;
+
+# 8 0x0041AC79 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (17):
+
+     15:     txSetConsoleAttr (0xf0);
+     16: 
+=>   17:     Akinator(dot, SAVENAME);
+     18: 
+     19:     return 0;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  4 2018 15:51:33, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 04 2018 15:51:55
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00422258 в функции tree_print_way() в файле C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp на строке 221. Попытка прочесть данные по адресу 0x00000004. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x004FF2C0 (32-bit), Flags: Cmdre0, Thread: 0xB414 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00422258 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: tree_print_way() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (221):
+
+    219: int tree_print_way(Node* nd, const char* separate)
+    220: {
+=>  221:     nd = PARENT(nd);
+    222:     if(!nd)
+    223:     {
+
+# 1 0x00422280 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: tree_print_way() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (227):
+
+    225:     }
+    226: 
+=>  227:     tree_print_way(PARENT(nd), separate);
+    228:     printf("%c%s%s ", tolower(*(nd->info + 1)), nd->info + 2, separate);
+    229:     return 0;
+
+# 2 0x00422280 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: tree_print_way() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (227):
+
+    225:     }
+    226: 
+=>  227:     tree_print_way(PARENT(nd), separate);
+    228:     printf("%c%s%s ", tolower(*(nd->info + 1)), nd->info + 2, separate);
+    229:     return 0;
+
+# 3 0x00401CBF in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: get_definition() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (244):
+
+    242: 
+    243:     printf("%c%s ", toupper(*to_define), to_define + 1);
+=>  244:     tree_print_way(nd, ",");
+    245: 
+    246:     EOL;
+
+# 4 0x004013B6 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: Akinator() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (55):
+
+     53:         if(def)
+     54:         {
+=>   55:             get_definition(Expert);
+     56:             def = 0;
+     57:             CHEERS;
+
+# 5 0x0041AC89 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (17):
+
+     15:     txSetConsoleAttr (0xf0);
+     16: 
+=>   17:     Akinator(dot, SAVENAME);
+     18: 
+     19:     return 0;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  4 2018 15:51:33, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 04 2018 16:24:02
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00422258 в функции tree_print_way() в файле C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp на строке 221. Попытка прочесть данные по адресу 0x00000004. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x004FF2C0 (32-bit), Flags: Cmdre0, Thread: 0xB414 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00422258 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: tree_print_way() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (221):
+
+    219: int tree_print_way(Node* nd, const char* separate)
+    220: {
+=>  221:     nd = PARENT(nd);
+    222:     if(!nd)
+    223:     {
+
+# 1 0x00422280 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: tree_print_way() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (227):
+
+    225:     }
+    226: 
+=>  227:     tree_print_way(PARENT(nd), separate);
+    228:     printf("%c%s%s ", tolower(*(nd->info + 1)), nd->info + 2, separate);
+    229:     return 0;
+
+# 2 0x00422280 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: tree_print_way() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (227):
+
+    225:     }
+    226: 
+=>  227:     tree_print_way(PARENT(nd), separate);
+    228:     printf("%c%s%s ", tolower(*(nd->info + 1)), nd->info + 2, separate);
+    229:     return 0;
+
+# 3 0x00401CBF in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: get_definition() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (244):
+
+    242: 
+    243:     printf("%c%s ", toupper(*to_define), to_define + 1);
+=>  244:     tree_print_way(nd, ",");
+    245: 
+    246:     EOL;
+
+# 4 0x004013B6 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: Akinator() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (55):
+
+     53:         if(def)
+     54:         {
+=>   55:             get_definition(Expert);
+     56:             def = 0;
+     57:             CHEERS;
+
+# 5 0x0041AC89 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (17):
+
+     15:     txSetConsoleAttr (0xf0);
+     16: 
+=>   17:     Akinator(dot, SAVENAME);
+     18: 
+     19:     return 0;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  4 2018 15:51:33, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 04 2018 16:24:02
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00422258 в функции tree_print_way() в файле C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp на строке 221. Попытка прочесть данные по адресу 0x00000004. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x004FF2C0 (32-bit), Flags: Cmdre0, Thread: 0x9B48 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00422258 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: tree_print_way() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (221):
+
+    219: int tree_print_way(Node* nd, const char* separate)
+    220: {
+=>  221:     if(!PARENT(nd))
+    222:     {
+    223:         return 0;
+
+# 1 0x00422284 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: tree_print_way() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (227):
+
+    225:     nd = PARENT(nd);
+    226: 
+=>  227:     tree_print_way(PARENT(nd), separate);
+    228:     printf("%c%s%s ", tolower(*(nd->info + 1)), nd->info + 2, separate);
+    229:     return 0;
+
+# 2 0x00422284 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: tree_print_way() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (227):
+
+    225:     nd = PARENT(nd);
+    226: 
+=>  227:     tree_print_way(PARENT(nd), separate);
+    228:     printf("%c%s%s ", tolower(*(nd->info + 1)), nd->info + 2, separate);
+    229:     return 0;
+
+# 3 0x00401CBF in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: get_definition() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (244):
+
+    242: 
+    243:     printf("%c%s ", toupper(*to_define), to_define + 1);
+=>  244:     tree_print_way(nd, ",");
+    245: 
+    246:     EOL;
+
+# 4 0x004013B6 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: Akinator() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (55):
+
+     53:         if(def)
+     54:         {
+=>   55:             get_definition(Expert);
+     56:             def = 0;
+     57:             CHEERS;
+
+# 5 0x0041AC89 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (17):
+
+     15:     txSetConsoleAttr (0xf0);
+     16: 
+=>   17:     Akinator(dot, SAVENAME);
+     18: 
+     19:     return 0;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  4 2018 15:51:33, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 04 2018 16:25:44
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00422258 в функции tree_print_way() в файле C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp на строке 221. Попытка прочесть данные по адресу 0x00000004. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x004FF2C0 (32-bit), Flags: Cmdre0, Thread: 0x9B48 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00422258 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: tree_print_way() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (221):
+
+    219: int tree_print_way(Node* nd, const char* separate)
+    220: {
+=>  221:     if(!PARENT(nd))
+    222:     {
+    223:         return 0;
+
+# 1 0x00422284 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: tree_print_way() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (227):
+
+    225:     nd = PARENT(nd);
+    226: 
+=>  227:     tree_print_way(PARENT(nd), separate);
+    228:     printf("%c%s%s ", tolower(*(nd->info + 1)), nd->info + 2, separate);
+    229:     return 0;
+
+# 2 0x00422284 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: tree_print_way() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (227):
+
+    225:     nd = PARENT(nd);
+    226: 
+=>  227:     tree_print_way(PARENT(nd), separate);
+    228:     printf("%c%s%s ", tolower(*(nd->info + 1)), nd->info + 2, separate);
+    229:     return 0;
+
+# 3 0x00401CBF in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: get_definition() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (244):
+
+    242: 
+    243:     printf("%c%s ", toupper(*to_define), to_define + 1);
+=>  244:     tree_print_way(nd, ",");
+    245: 
+    246:     EOL;
+
+# 4 0x004013B6 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: Akinator() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (55):
+
+     53:         if(def)
+     54:         {
+=>   55:             get_definition(Expert);
+     56:             def = 0;
+     57:             CHEERS;
+
+# 5 0x0041AC89 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (17):
+
+     15:     txSetConsoleAttr (0xf0);
+     16: 
+=>   17:     Akinator(dot, SAVENAME);
+     18: 
+     19:     return 0;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  4 2018 15:51:33, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 04 2018 16:25:43
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: signal (22, 0x00): SIGABRT: Аварийное завершение программы, вызвана функция abort(). 
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#1: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x004FF2C0 (32-bit), Flags: Cmdre0, Thread: 0x31B4 (Main), errno: 42 (Illegal byte sequence). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x0040A324 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: _txOnSignal() at D:/TX/TXlib.h (8699)
+# 1 0x76516F61 in C:\WINDOWS\System32\msvcrt.dll: raise()
+# 2 0x7651B40B in C:\WINDOWS\System32\msvcrt.dll: abort()
+# 3 0x76517D8C in C:\WINDOWS\System32\msvcrt.dll: assert()
+
+# 4 0x00422277 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: tree_print_way() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (221):
+
+    219: int tree_print_way(Node* nd, const char* separate)
+    220: {
+=>  221:     assert(nd);
+    222: 
+    223:     if(!PARENT(nd))
+
+# 5 0x004222A6 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: tree_print_way() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (229):
+
+    227:     nd = PARENT(nd);
+    228: 
+=>  229:     tree_print_way(PARENT(nd), separate);
+    230:     printf("%c%s%s ", tolower(*(nd->info + 1)), nd->info + 2, separate);
+    231:     return 0;
+
+# 6 0x004222A6 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: tree_print_way() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (229):
+
+    227:     nd = PARENT(nd);
+    228: 
+=>  229:     tree_print_way(PARENT(nd), separate);
+    230:     printf("%c%s%s ", tolower(*(nd->info + 1)), nd->info + 2, separate);
+    231:     return 0;
+
+# 7 0x00401CBF in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: get_definition() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (244):
+
+    242: 
+    243:     printf("%c%s ", toupper(*to_define), to_define + 1);
+=>  244:     tree_print_way(nd, ",");
+    245: 
+    246:     EOL;
+
+# 8 0x004013B6 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: Akinator() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (55):
+
+     53:         if(def)
+     54:         {
+=>   55:             get_definition(Expert);
+     56:             def = 0;
+     57:             CHEERS;
+
+# 9 0x0041AC89 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (17):
+
+     15:     txSetConsoleAttr (0xf0);
+     16: 
+=>   17:     Akinator(dot, SAVENAME);
+     18: 
+     19:     return 0;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  4 2018 15:51:33, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 04 2018 16:27:06
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: signal (22, 0x00): SIGABRT: Аварийное завершение программы, вызвана функция abort(). 
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#1: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x004FF2C0 (32-bit), Flags: Cmdre0, Thread: 0xA588 (Main), errno: 42 (Illegal byte sequence). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x0040A324 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: _txOnSignal() at D:/TX/TXlib.h (8699)
+# 1 0x76516F61 in C:\WINDOWS\System32\msvcrt.dll: raise()
+# 2 0x7651B40B in C:\WINDOWS\System32\msvcrt.dll: abort()
+# 3 0x76517D8C in C:\WINDOWS\System32\msvcrt.dll: assert()
+
+# 4 0x00422277 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: tree_print_way() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (221):
+
+    219: int tree_print_way(Node* nd, const char* separate)
+    220: {
+=>  221:     assert(nd);
+    222: 
+    223:     if(!PARENT(nd))
+
+# 5 0x004222EF in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: tree_print_way() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (230):
+
+    228:     $(nd);
+    229: 
+=>  230:     tree_print_way(PARENT(nd), separate);
+    231:     printf("%c%s%s ", tolower(*(nd->info + 1)), nd->info + 2, separate);
+    232:     return 0;
+
+# 6 0x004222EF in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: tree_print_way() at C:/Users/zue26/Documents/GitHub/Akina/Tree.cpp (230):
+
+    228:     $(nd);
+    229: 
+=>  230:     tree_print_way(PARENT(nd), separate);
+    231:     printf("%c%s%s ", tolower(*(nd->info + 1)), nd->info + 2, separate);
+    232:     return 0;
+
+# 7 0x00401CBF in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: get_definition() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (244):
+
+    242: 
+    243:     printf("%c%s ", toupper(*to_define), to_define + 1);
+=>  244:     tree_print_way(nd, ",");
+    245: 
+    246:     EOL;
+
+# 8 0x004013B6 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: Akinator() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (55):
+
+     53:         if(def)
+     54:         {
+=>   55:             get_definition(Expert);
+     56:             def = 0;
+     57:             CHEERS;
+
+# 9 0x0041AC89 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (17):
+
+     15:     txSetConsoleAttr (0xf0);
+     16: 
+=>   17:     Akinator(dot, SAVENAME);
+     18: 
+     19:     return 0;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  4 2018 15:51:33, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 04 2018 16:30:42
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x7653B0D2 в функции ungetwc(). Попытка прочесть данные по адресу 0x000000DF. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x005002C0 (32-bit), Flags: Cmdre0, Thread: 0x8F1C (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x7653B0D2 in C:\WINDOWS\System32\msvcrt.dll: ungetwc()
+# 1 0x765348DB in C:\WINDOWS\System32\msvcrt.dll: printf()
+
+# 2 0x0040219D in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: expert_get_comparison() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (299):
+
+    297:     EOL;
+    298: 
+=>  299:     PRINTOBJ("Но %с%s, в отличие от ", nd1->info);
+    300:     PRINTOBJ("%c%s ", nd2->info);
+    301: 
+
+# 3 0x00401477 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: Akinator() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (69):
+
+     67:             comp = 0;
+     68: 
+=>   69:             if (expert_get_comparison(Expert))
+     70:             {
+     71:                 continue;
+
+# 4 0x0041B1D5 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (17):
+
+     15:     txSetConsoleAttr (0xf0);
+     16: 
+=>   17:     Akinator(dot, SAVENAME);
+     18: 
+     19:     return 0;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  5 2018 02:54:37, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 05 2018 02:57:45
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x7653B0D2 в функции ungetwc(). Попытка прочесть данные по адресу 0x000000DF. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x005002C0 (32-bit), Flags: Cmdre0, Thread: 0x8F1C (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x7653B0D2 in C:\WINDOWS\System32\msvcrt.dll: ungetwc()
+# 1 0x765348DB in C:\WINDOWS\System32\msvcrt.dll: printf()
+
+# 2 0x0040219D in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: expert_get_comparison() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (299):
+
+    297:     EOL;
+    298: 
+=>  299:     PRINTOBJ("Но %с%s, в отличие от ", nd1->info);
+    300:     PRINTOBJ("%c%s ", nd2->info);
+    301: 
+
+# 3 0x00401477 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: Akinator() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (69):
+
+     67:             comp = 0;
+     68: 
+=>   69:             if (expert_get_comparison(Expert))
+     70:             {
+     71:                 continue;
+
+# 4 0x0041B1D5 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (17):
+
+     15:     txSetConsoleAttr (0xf0);
+     16: 
+=>   17:     Akinator(dot, SAVENAME);
+     18: 
+     19:     return 0;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  5 2018 02:54:37, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 05 2018 02:57:45
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x7653B0D2 в функции ungetwc(). Попытка прочесть данные по адресу 0x000000DF. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x005002C0 (32-bit), Flags: Cmdre0, Thread: 0xB558 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x7653B0D2 in C:\WINDOWS\System32\msvcrt.dll: ungetwc()
+# 1 0x765348DB in C:\WINDOWS\System32\msvcrt.dll: printf()
+
+# 2 0x0040219D in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: expert_get_comparison() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (299):
+
+    297:     EOL;
+    298: 
+=>  299:     PRINTOBJ("Но %с%s, в отличие от ", nd1->info);
+    300:     PRINTOBJ("%c%s ", nd2->info);
+    301: 
+
+# 3 0x00401477 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: Akinator() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (69):
+
+     67:             comp = 0;
+     68: 
+=>   69:             if (expert_get_comparison(Expert))
+     70:             {
+     71:                 continue;
+
+# 4 0x0041B1D5 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (17):
+
+     15:     txSetConsoleAttr (0xf0);
+     16: 
+=>   17:     Akinator(dot, SAVENAME);
+     18: 
+     19:     return 0;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  5 2018 02:54:37, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 05 2018 02:58:31
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x7653B0D2 в функции ungetwc(). Попытка прочесть данные по адресу 0x000000DF. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x005002C0 (32-bit), Flags: Cmdre0, Thread: 0xB558 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x7653B0D2 in C:\WINDOWS\System32\msvcrt.dll: ungetwc()
+# 1 0x765348DB in C:\WINDOWS\System32\msvcrt.dll: printf()
+
+# 2 0x0040219D in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: expert_get_comparison() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (299):
+
+    297:     EOL;
+    298: 
+=>  299:     PRINTOBJ("Но %с%s, в отличие от ", nd1->info);
+    300:     PRINTOBJ("%c%s ", nd2->info);
+    301: 
+
+# 3 0x00401477 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: Akinator() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (69):
+
+     67:             comp = 0;
+     68: 
+=>   69:             if (expert_get_comparison(Expert))
+     70:             {
+     71:                 continue;
+
+# 4 0x0041B1D5 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (17):
+
+     15:     txSetConsoleAttr (0xf0);
+     16: 
+=>   17:     Akinator(dot, SAVENAME);
+     18: 
+     19:     return 0;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  5 2018 02:54:37, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 05 2018 02:58:31
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x7653B0D2 в функции ungetwc(). Попытка прочесть данные по адресу 0x000000DF. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x005002C0 (32-bit), Flags: Cmdre0, Thread: 0x7F10 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x7653B0D2 in C:\WINDOWS\System32\msvcrt.dll: ungetwc()
+# 1 0x765348DB in C:\WINDOWS\System32\msvcrt.dll: printf()
+
+# 2 0x004021BA in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: expert_get_comparison() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (301):
+
+    299:     EOL;
+    300: 
+=>  301:     PRINTOBJ("Но %с%s, в отличие от ", nd1->info);
+    302:     PRINTOBJ("%c%s ", nd2->info);
+    303: 
+
+# 3 0x00401477 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: Akinator() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (69):
+
+     67:             comp = 0;
+     68: 
+=>   69:             if (expert_get_comparison(Expert))
+     70:             {
+     71:                 continue;
+
+# 4 0x0041B1F5 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (17):
+
+     15:     txSetConsoleAttr (0xf0);
+     16: 
+=>   17:     Akinator(dot, SAVENAME);
+     18: 
+     19:     return 0;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  5 2018 02:54:37, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 05 2018 03:00:32
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x7653B0D2 в функции ungetwc(). Попытка прочесть данные по адресу 0x000000DF. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x005002C0 (32-bit), Flags: Cmdre0, Thread: 0x7F10 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x7653B0D2 in C:\WINDOWS\System32\msvcrt.dll: ungetwc()
+# 1 0x765348DB in C:\WINDOWS\System32\msvcrt.dll: printf()
+
+# 2 0x004021BA in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: expert_get_comparison() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (301):
+
+    299:     EOL;
+    300: 
+=>  301:     PRINTOBJ("Но %с%s, в отличие от ", nd1->info);
+    302:     PRINTOBJ("%c%s ", nd2->info);
+    303: 
+
+# 3 0x00401477 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: Akinator() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (69):
+
+     67:             comp = 0;
+     68: 
+=>   69:             if (expert_get_comparison(Expert))
+     70:             {
+     71:                 continue;
+
+# 4 0x0041B1F5 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (17):
+
+     15:     txSetConsoleAttr (0xf0);
+     16: 
+=>   17:     Akinator(dot, SAVENAME);
+     18: 
+     19:     return 0;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  5 2018 02:54:37, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 05 2018 03:00:32
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x7653B0D2 в функции ungetwc(). Попытка прочесть данные по адресу 0x000000DF. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x005002C0 (32-bit), Flags: Cmdre0, Thread: 0x44F4 (Main), GetLastError(): 183 (Невозможно создать файл, так как он уже существует). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x7653B0D2 in C:\WINDOWS\System32\msvcrt.dll: ungetwc()
+# 1 0x765348DB in C:\WINDOWS\System32\msvcrt.dll: printf()
+
+# 2 0x00402180 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: expert_get_comparison() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (301):
+
+    299:     EOL;
+    300: 
+=>  301:     PRINTOBJ("Но %с%s, в отличие от ", nd1->info);
+    302:     PRINTOBJ("%c%s ", nd2->info);
+    303: 
+
+# 3 0x00401477 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: Akinator() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (69):
+
+     67:             comp = 0;
+     68: 
+=>   69:             if (expert_get_comparison(Expert))
+     70:             {
+     71:                 continue;
+
+# 4 0x0041B1B9 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (17):
+
+     15:     txSetConsoleAttr (0xf0);
+     16: 
+=>   17:     Akinator(dot, SAVENAME);
+     18: 
+     19:     return 0;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  5 2018 02:54:37, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 05 2018 03:01:16
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x7653B0D2 в функции ungetwc(). Попытка прочесть данные по адресу 0x000000DF. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x005002C0 (32-bit), Flags: Cmdre0, Thread: 0x44F4 (Main), GetLastError(): 183 (Невозможно создать файл, так как он уже существует). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x7653B0D2 in C:\WINDOWS\System32\msvcrt.dll: ungetwc()
+# 1 0x765348DB in C:\WINDOWS\System32\msvcrt.dll: printf()
+
+# 2 0x00402180 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: expert_get_comparison() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (301):
+
+    299:     EOL;
+    300: 
+=>  301:     PRINTOBJ("Но %с%s, в отличие от ", nd1->info);
+    302:     PRINTOBJ("%c%s ", nd2->info);
+    303: 
+
+# 3 0x00401477 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: Akinator() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (69):
+
+     67:             comp = 0;
+     68: 
+=>   69:             if (expert_get_comparison(Expert))
+     70:             {
+     71:                 continue;
+
+# 4 0x0041B1B9 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (17):
+
+     15:     txSetConsoleAttr (0xf0);
+     16: 
+=>   17:     Akinator(dot, SAVENAME);
+     18: 
+     19:     return 0;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  5 2018 02:54:37, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 05 2018 03:01:15
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x7653B0D2 в функции ungetwc(). Попытка прочесть данные по адресу 0x000000C4. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x005002C0 (32-bit), Flags: Cmdre0, Thread: 0xC150 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x7653B0D2 in C:\WINDOWS\System32\msvcrt.dll: ungetwc()
+# 1 0x765348DB in C:\WINDOWS\System32\msvcrt.dll: printf()
+
+# 2 0x00402180 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: expert_get_comparison() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (301):
+
+    299:     EOL;
+    300: 
+=>  301:     PRINTOBJ("Но %с%s, в отличие от ", nd1->info);
+    302:     PRINTOBJ("%c%s ", nd2->info);
+    303: 
+
+# 3 0x00401477 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: Akinator() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (69):
+
+     67:             comp = 0;
+     68: 
+=>   69:             if (expert_get_comparison(Expert))
+     70:             {
+     71:                 continue;
+
+# 4 0x0041B1B9 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (17):
+
+     15:     txSetConsoleAttr (0xf0);
+     16: 
+=>   17:     Akinator(dot, SAVENAME);
+     18: 
+     19:     return 0;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  5 2018 02:54:37, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 05 2018 03:01:53
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x7653B0D2 в функции ungetwc(). Попытка прочесть данные по адресу 0x000000C4. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x005002C0 (32-bit), Flags: Cmdre0, Thread: 0xC150 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x7653B0D2 in C:\WINDOWS\System32\msvcrt.dll: ungetwc()
+# 1 0x765348DB in C:\WINDOWS\System32\msvcrt.dll: printf()
+
+# 2 0x00402180 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: expert_get_comparison() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (301):
+
+    299:     EOL;
+    300: 
+=>  301:     PRINTOBJ("Но %с%s, в отличие от ", nd1->info);
+    302:     PRINTOBJ("%c%s ", nd2->info);
+    303: 
+
+# 3 0x00401477 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: Akinator() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (69):
+
+     67:             comp = 0;
+     68: 
+=>   69:             if (expert_get_comparison(Expert))
+     70:             {
+     71:                 continue;
+
+# 4 0x0041B1B9 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (17):
+
+     15:     txSetConsoleAttr (0xf0);
+     16: 
+=>   17:     Akinator(dot, SAVENAME);
+     18: 
+     19:     return 0;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  5 2018 02:54:37, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 05 2018 03:01:52
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x7653B0D2 в функции ungetwc(). Попытка прочесть данные по адресу 0x000000DF. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x005002C0 (32-bit), Flags: Cmdre0, Thread: 0x9268 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x7653B0D2 in C:\WINDOWS\System32\msvcrt.dll: ungetwc()
+# 1 0x765348DB in C:\WINDOWS\System32\msvcrt.dll: printf()
+
+# 2 0x00402233 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: expert_get_comparison() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (303):
+
+    301:     EOL;
+    302: 
+=>  303:     PRINTOBJ("Но %с%s, в отличие от ", nd1->info);
+    304:     PRINTOBJ("%c%s ", nd2->info);
+    305: 
+
+# 3 0x00401477 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: Akinator() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (69):
+
+     67:             comp = 0;
+     68: 
+=>   69:             if (expert_get_comparison(Expert))
+     70:             {
+     71:                 continue;
+
+# 4 0x0041B269 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (17):
+
+     15:     txSetConsoleAttr (0xf0);
+     16: 
+=>   17:     Akinator(dot, SAVENAME);
+     18: 
+     19:     return 0;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  5 2018 02:54:37, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 05 2018 03:03:48
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x7653B0D2 в функции ungetwc(). Попытка прочесть данные по адресу 0x000000DF. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x005002C0 (32-bit), Flags: Cmdre0, Thread: 0x9268 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x7653B0D2 in C:\WINDOWS\System32\msvcrt.dll: ungetwc()
+# 1 0x765348DB in C:\WINDOWS\System32\msvcrt.dll: printf()
+
+# 2 0x00402233 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: expert_get_comparison() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (303):
+
+    301:     EOL;
+    302: 
+=>  303:     PRINTOBJ("Но %с%s, в отличие от ", nd1->info);
+    304:     PRINTOBJ("%c%s ", nd2->info);
+    305: 
+
+# 3 0x00401477 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: Akinator() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (69):
+
+     67:             comp = 0;
+     68: 
+=>   69:             if (expert_get_comparison(Expert))
+     70:             {
+     71:                 continue;
+
+# 4 0x0041B269 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (17):
+
+     15:     txSetConsoleAttr (0xf0);
+     16: 
+=>   17:     Akinator(dot, SAVENAME);
+     18: 
+     19:     return 0;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  5 2018 02:54:37, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 05 2018 03:03:48
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x7653B0D2 в функции ungetwc(). Попытка прочесть данные по адресу 0x000000DF. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x005002C0 (32-bit), Flags: Cmdre0, Thread: 0x8CEC (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x7653B0D2 in C:\WINDOWS\System32\msvcrt.dll: ungetwc()
+# 1 0x765348DB in C:\WINDOWS\System32\msvcrt.dll: printf()
+
+# 2 0x00402229 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: expert_get_comparison() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (301):
+
+    299:     EOL;
+    300: 
+=>  301:     PRINTOBJ("Но %с%s, в отличие от ", nd1->info);
+    302:     PRINTOBJ("%c%s ", nd2->info);
+    303: 
+
+# 3 0x00401477 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: Akinator() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (69):
+
+     67:             comp = 0;
+     68: 
+=>   69:             if (expert_get_comparison(Expert))
+     70:             {
+     71:                 continue;
+
+# 4 0x0041B261 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (17):
+
+     15:     txSetConsoleAttr (0xf0);
+     16: 
+=>   17:     Akinator(dot, SAVENAME);
+     18: 
+     19:     return 0;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  5 2018 02:54:37, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 05 2018 03:04:33
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x7653B0D2 в функции ungetwc(). Попытка прочесть данные по адресу 0x000000DF. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x005002C0 (32-bit), Flags: Cmdre0, Thread: 0x8CEC (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x7653B0D2 in C:\WINDOWS\System32\msvcrt.dll: ungetwc()
+# 1 0x765348DB in C:\WINDOWS\System32\msvcrt.dll: printf()
+
+# 2 0x00402229 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: expert_get_comparison() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (301):
+
+    299:     EOL;
+    300: 
+=>  301:     PRINTOBJ("Но %с%s, в отличие от ", nd1->info);
+    302:     PRINTOBJ("%c%s ", nd2->info);
+    303: 
+
+# 3 0x00401477 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: Akinator() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (69):
+
+     67:             comp = 0;
+     68: 
+=>   69:             if (expert_get_comparison(Expert))
+     70:             {
+     71:                 continue;
+
+# 4 0x0041B261 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (17):
+
+     15:     txSetConsoleAttr (0xf0);
+     16: 
+=>   17:     Akinator(dot, SAVENAME);
+     18: 
+     19:     return 0;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  5 2018 02:54:37, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 05 2018 03:04:33
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x7653B0D2 в функции ungetwc(). Попытка прочесть данные по адресу 0x000000DF. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x005002C0 (32-bit), Flags: Cmdre0, Thread: 0x9810 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x7653B0D2 in C:\WINDOWS\System32\msvcrt.dll: ungetwc()
+# 1 0x765348DB in C:\WINDOWS\System32\msvcrt.dll: printf()
+
+# 2 0x0040222F in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: expert_get_comparison() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (301):
+
+    299:     EOL;
+    300: 
+=>  301:     PRINTOBJ("Но %с%s, в отличие от ", nd1->info);
+    302:     PRINTOBJ("%c%s ", nd2->info);
+    303: 
+
+# 3 0x00401477 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: Akinator() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (69):
+
+     67:             comp = 0;
+     68: 
+=>   69:             if (expert_get_comparison(Expert))
+     70:             {
+     71:                 continue;
+
+# 4 0x0041B265 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (17):
+
+     15:     txSetConsoleAttr (0xf0);
+     16: 
+=>   17:     Akinator(dot, SAVENAME);
+     18: 
+     19:     return 0;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  5 2018 02:54:37, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 05 2018 03:05:23
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x7653B0D2 в функции ungetwc(). Попытка прочесть данные по адресу 0x000000DF. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x005002C0 (32-bit), Flags: Cmdre0, Thread: 0x9810 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x7653B0D2 in C:\WINDOWS\System32\msvcrt.dll: ungetwc()
+# 1 0x765348DB in C:\WINDOWS\System32\msvcrt.dll: printf()
+
+# 2 0x0040222F in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: expert_get_comparison() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (301):
+
+    299:     EOL;
+    300: 
+=>  301:     PRINTOBJ("Но %с%s, в отличие от ", nd1->info);
+    302:     PRINTOBJ("%c%s ", nd2->info);
+    303: 
+
+# 3 0x00401477 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: Akinator() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (69):
+
+     67:             comp = 0;
+     68: 
+=>   69:             if (expert_get_comparison(Expert))
+     70:             {
+     71:                 continue;
+
+# 4 0x0041B265 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (17):
+
+     15:     txSetConsoleAttr (0xf0);
+     16: 
+=>   17:     Akinator(dot, SAVENAME);
+     18: 
+     19:     return 0;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  5 2018 02:54:37, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 05 2018 03:05:23
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x7653B0D2 в функции ungetwc(). Попытка прочесть данные по адресу 0x000000CA. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x005002C0 (32-bit), Flags: Cmdre0, Thread: 0xBDA0 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x7653B0D2 in C:\WINDOWS\System32\msvcrt.dll: ungetwc()
+# 1 0x765348DB in C:\WINDOWS\System32\msvcrt.dll: printf()
+
+# 2 0x004021FF in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: expert_get_comparison() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (301):
+
+    299:     EOL;
+    300: 
+=>  301:     PRINTOBJ("Но %с%s, в отличие от ", nd1->info);
+    302:     PRINTOBJ("%c%s ", nd2->info);
+    303: 
+
+# 3 0x00401477 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: Akinator() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (69):
+
+     67:             comp = 0;
+     68: 
+=>   69:             if (expert_get_comparison(Expert))
+     70:             {
+     71:                 continue;
+
+# 4 0x0041B235 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (17):
+
+     15:     txSetConsoleAttr (0xf0);
+     16: 
+=>   17:     Akinator(dot, SAVENAME);
+     18: 
+     19:     return 0;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  5 2018 02:54:37, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 05 2018 03:06:26
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x7653B0D2 в функции ungetwc(). Попытка прочесть данные по адресу 0x000000CA. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x005002C0 (32-bit), Flags: Cmdre0, Thread: 0xBDA0 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x7653B0D2 in C:\WINDOWS\System32\msvcrt.dll: ungetwc()
+# 1 0x765348DB in C:\WINDOWS\System32\msvcrt.dll: printf()
+
+# 2 0x004021FF in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: expert_get_comparison() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (301):
+
+    299:     EOL;
+    300: 
+=>  301:     PRINTOBJ("Но %с%s, в отличие от ", nd1->info);
+    302:     PRINTOBJ("%c%s ", nd2->info);
+    303: 
+
+# 3 0x00401477 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: Akinator() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (69):
+
+     67:             comp = 0;
+     68: 
+=>   69:             if (expert_get_comparison(Expert))
+     70:             {
+     71:                 continue;
+
+# 4 0x0041B235 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (17):
+
+     15:     txSetConsoleAttr (0xf0);
+     16: 
+=>   17:     Akinator(dot, SAVENAME);
+     18: 
+     19:     return 0;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  5 2018 02:54:37, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 05 2018 03:06:26
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x7653B0D2 в функции ungetwc(). Попытка прочесть данные по адресу 0x00000045. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x005002C0 (32-bit), Flags: Cmdre0, Thread: 0x9810 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x7653B0D2 in C:\WINDOWS\System32\msvcrt.dll: ungetwc()
+# 1 0x765348DB in C:\WINDOWS\System32\msvcrt.dll: printf()
+
+# 2 0x0040219D in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: expert_get_comparison() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (299):
+
+    297:     EOL;
+    298: 
+=>  299:     PRINTOBJ("Но %с%s, в отличие от ", nd1->info);
+    300:     PRINTOBJ("%c%s ", nd2->info);
+    301: 
+
+# 3 0x00401477 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: Akinator() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (69):
+
+     67:             comp = 0;
+     68: 
+=>   69:             if (expert_get_comparison(Expert))
+     70:             {
+     71:                 continue;
+
+# 4 0x0041B1D5 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (17):
+
+     15:     txSetConsoleAttr (0xf0);
+     16: 
+=>   17:     Akinator(dot, SAVENAME);
+     18: 
+     19:     return 0;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  5 2018 02:54:37, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 05 2018 03:09:07
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x7653B0D2 в функции ungetwc(). Попытка прочесть данные по адресу 0x00000045. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x005002C0 (32-bit), Flags: Cmdre0, Thread: 0x9810 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x7653B0D2 in C:\WINDOWS\System32\msvcrt.dll: ungetwc()
+# 1 0x765348DB in C:\WINDOWS\System32\msvcrt.dll: printf()
+
+# 2 0x0040219D in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: expert_get_comparison() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (299):
+
+    297:     EOL;
+    298: 
+=>  299:     PRINTOBJ("Но %с%s, в отличие от ", nd1->info);
+    300:     PRINTOBJ("%c%s ", nd2->info);
+    301: 
+
+# 3 0x00401477 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: Akinator() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (69):
+
+     67:             comp = 0;
+     68: 
+=>   69:             if (expert_get_comparison(Expert))
+     70:             {
+     71:                 continue;
+
+# 4 0x0041B1D5 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (17):
+
+     15:     txSetConsoleAttr (0xf0);
+     16: 
+=>   17:     Akinator(dot, SAVENAME);
+     18: 
+     19:     return 0;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  5 2018 02:54:37, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 05 2018 03:09:06
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x7653B0D2 в функции ungetwc(). Попытка прочесть данные по адресу 0x000000DD. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x005002C0 (32-bit), Flags: Cmdre0, Thread: 0x758C (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x7653B0D2 in C:\WINDOWS\System32\msvcrt.dll: ungetwc()
+# 1 0x765348DB in C:\WINDOWS\System32\msvcrt.dll: printf()
+
+# 2 0x0040221E in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: expert_get_comparison() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (314):
+
+    312:     {
+    313:         PRINTOBJ("Но %c%s, в отличие от ", nd1->info);
+=>  314:         PRINTOBJ("%с%s, ", nd2->info);
+    315: 
+    316:         PRINTINFO(com,nd1_side);
+
+# 3 0x0040148F in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: Akinator() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (72):
+
+     70: 
+     71:             printf("Введите: \"Выход\"/\"Exit\" для выхода из сравнения\n");                     // exit condition
+=>   72:             if (expert_get_comparison(Expert))
+     73:             {
+     74:                 continue;
+
+# 4 0x0041B291 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (17):
+
+     15:     txSetConsoleAttr (0xf0);
+     16: 
+=>   17:     Akinator(dot, SAVENAME);
+     18: 
+     19:     return 0;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  5 2018 03:51:56, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 05 2018 03:54:23
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x7653B0D2 в функции ungetwc(). Попытка прочесть данные по адресу 0x000000DD. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300], Instance: 0x005002C0 (32-bit), Flags: Cmdre0, Thread: 0x758C (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x7653B0D2 in C:\WINDOWS\System32\msvcrt.dll: ungetwc()
+# 1 0x765348DB in C:\WINDOWS\System32\msvcrt.dll: printf()
+
+# 2 0x0040221E in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: expert_get_comparison() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (314):
+
+    312:     {
+    313:         PRINTOBJ("Но %c%s, в отличие от ", nd1->info);
+=>  314:         PRINTOBJ("%с%s, ", nd2->info);
+    315: 
+    316:         PRINTINFO(com,nd1_side);
+
+# 3 0x0040148F in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: Akinator() at C:/Users/zue26/Documents/GitHub/Akina/Expert.cpp (72):
+
+     70: 
+     71:             printf("Введите: \"Выход\"/\"Exit\" для выхода из сравнения\n");                     // exit condition
+=>   72:             if (expert_get_comparison(Expert))
+     73:             {
+     74:                 continue;
+
+# 4 0x0041B291 in C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe: main() at C:/Users/zue26/Documents/GitHub/Akina/main.cpp (17):
+
+     15:     txSetConsoleAttr (0xf0);
+     16: 
+=>   17:     Akinator(dot, SAVENAME);
+     18: 
+     19:     return 0;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 105, Date: 2018-06-12 00:00:00 +0300]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	D:\TX\TXlib.h
+Compiled:	Dec  5 2018 03:51:56, GNU g++ 5.1.0, std=199711L, MinGW Runtime 3.20, 32-bit, Debug
+Started:	Dec 05 2018 03:54:22
+
+Run file:	C:\Users\zue26\Documents\GitHub\Akina\bin\Debug\Akina.exe
+Directory:	C:\Users\zue26\Documents\GitHub\Akina
+
+--------------------------------------------------

@@ -60,6 +60,8 @@ struct MyPtrList
     int plist_guard_end = GUARDPOIS;
 };
 
+void ptr_list_present(const char* ,const char*);
+
 void plist_Ctor(MyPtrList*);
 void plist_Dtor(MyPtrList*);
 void plist_elem_Ctor(PtrListElem*);
@@ -67,7 +69,7 @@ void plist_elem_Dtor(PtrListElem*);
 void plmake_hash(MyPtrList*);
 PtrListElem* plist_push_back(MyPtrList*, list_type);
 PtrListElem* plist_push_front(MyPtrList*, list_type);
-PtrListElem* plist_insert(MyPtrList*, PtrListElem*, list_type);
+PtrListElem* plist_insert(MyPtrList*, PtrListElem*, list_type);                 // behind input element
 int plist_pop_back(MyPtrList*);
 int plist_pop_front(MyPtrList*);
 int plist_erase(MyPtrList*, PtrListElem*);
