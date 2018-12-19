@@ -481,6 +481,8 @@ char* remove_shift(char* str, int length)
 
 #define RE_STORE tree->TreeHash_struct = StructHash_buf;\
 
+#define IF_RETURN(cond) if (cond) return (cond);
+
 int tree_is_OK(Tree* tree)
 {
     assert(tree);
@@ -488,9 +490,10 @@ int tree_is_OK(Tree* tree)
 
     unsigned int counter = 0;
 
-    node_is_OK(ROOT(tree), &counter);
+    error = node_is_OK(ROOT(tree), &counter);
+    IF_RETURN(error);
 
-    if (tree->ver_num > counter)
+    if (tree->ver_num != counter)
     {
         return TRERLEN;
     }
@@ -504,9 +507,6 @@ int tree_is_OK(Tree* tree)
 
     return error;
 }
-
-
-#define IF_RETURN(cond) if (cond) return (cond);
 
 int node_is_OK(Node* node, unsigned int* counter)
 {
